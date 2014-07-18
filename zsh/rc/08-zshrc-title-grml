@@ -1,0 +1,82 @@
+#############################################
+#   8.      Terminal-title wizardry         #
+#############################################
+
+function ESC_print () {
+    info_print $'\ek' $'\e\\' "$@"
+}
+function set_title () {
+    info_print  $'\e]0;' $'\a' "$@"
+}
+
+function info_print () {
+    local esc_begin esc_end
+    esc_begin="$1"
+    esc_end="$2"
+    shift 2
+    printf '%s' ${esc_begin}
+    printf '%s' "$*"
+    printf '%s' "${esc_end}"
+}
+
+function grml_reset_screen_title () {
+    # adjust title of xterm
+    # see http://www.faqs.org/docs/Linux-mini/Xterm-Title.html
+    [[ ${NOTITLE:-} -gt 0 ]] && return 0
+    case $TERM in
+        (xterm*|rxvt*)
+            set_title ${(%):-"%n@%m: %~"}
+            ;;
+    esac
+}
+
+function grml_vcs_to_screen_title () {
+    if [[ $TERM == screen* ]] ; then
+        if [[ -n ${vcs_info_msg_1_} ]] ; then
+            ESC_print ${vcs_info_msg_1_}
+        else
+            ESC_print "zsh"
+        fi
+    fi
+}
+
+function grml_maintain_name () {
+    # set hostname if not running on host with name 'grml'
+    if [[ -n "$HOSTNAME" ]] && [[ "$HOSTNAME" != $(hostname) ]] ; then
+       NAME="@$HOSTNAME"
+    fi
+}
+
+function grml_cmd_to_screen_title () {
+    # get the name of the program currently running and hostname of local
+    # machine set screen window title if running in a screen
+    if [[ "$TERM" == screen* ]] ; then
+        local CMD="${1[(wr)^(*=*|sudo|ssh|-*)]}$NAME"
+        ESC_print ${CMD}
+    fi
+}
+
+function grml_control_xterm_title () {
+    case $TERM in
+        (xterm*|rxvt*)
+            set_title "${(%):-"%n@%m:"}" "$1"
+            ;;
+    esac
+}
+
+zrcautoload add-zsh-hook || add-zsh-hook () { :; }
+if [[ $NOPRECMD -eq 0 ]]; then
+    add-zsh-hook precmd grml_reset_screen_title
+    add-zsh-hook precmd grml_vcs_to_screen_title
+    add-zsh-hook preexec grml_maintain_name
+    add-zsh-hook preexec grml_cmd_to_screen_title
+    if [[ $NOTITLE -eq 0 ]]; then
+        add-zsh-hook preexec grml_control_xterm_title
+    fi
+fi
+
+## END OF FILE #################################################################
+# vim:filetype=zsh foldmethod=marker autoindent expandtab shiftwidth=4
+# Local variables:
+# mode: sh
+# End:

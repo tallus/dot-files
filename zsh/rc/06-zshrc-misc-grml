@@ -1,0 +1,389 @@
+#########################################################################
+#   6.  Misc                                                            #
+#########################################################################
+
+
+# command not found handling
+
+(( ${COMMAND_NOT_FOUND} == 1 )) &&
+function command_not_found_handler() {
+    emulate -L zsh
+    if [[ -x ${GRML_ZSH_CNF_HANDLER} ]] ; then
+        ${GRML_ZSH_CNF_HANDLER} $1
+    fi
+    return 1
+}
+
+# history
+
+ZSHDIR=${ZDOTDIR:-${HOME}/.zsh}
+
+#v#
+HISTFILE=${ZDOTDIR:-${HOME}}/.zsh_history
+isgrmlcd && HISTSIZE=500  || HISTSIZE=5000
+isgrmlcd && SAVEHIST=1000 || SAVEHIST=10000 # useful for setopt append_history
+
+# dirstack handling
+
+DIRSTACKSIZE=${DIRSTACKSIZE:-20}
+DIRSTACKFILE=${DIRSTACKFILE:-${ZDOTDIR:-${HOME}}/.zdirs}
+
+if [[ -f ${DIRSTACKFILE} ]] && [[ ${#dirstack[*]} -eq 0 ]] ; then
+    dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
+    # "cd -" won't work after login by just setting $OLDPWD, so
+    [[ -d $dirstack[1] ]] && cd $dirstack[1] && cd $OLDPWD
+fi
+
+chpwd() {
+    local -ax my_stack
+    my_stack=( ${PWD} ${dirstack} )
+    if is42 ; then
+        builtin print -l ${(u)my_stack} >! ${DIRSTACKFILE}
+    else
+        uprint my_stack >! ${DIRSTACKFILE}
+    fi
+}
+
+# 'hash' some often used directories
+# access as e.g cd ~log
+#d# start
+hash -d deb=/var/cache/apt/archives
+hash -d doc=/usr/share/doc
+hash -d linux=/lib/modules/$(command uname -r)/build/
+hash -d log=/var/log
+hash -d slog=/var/log/syslog
+hash -d src=/usr/src
+hash -d templ=${HOME}/Templates
+hash -d tt=/usr/share/doc/texttools-doc
+hash -d www=/var/www
+#d# end
+
+# do we have GNU ls with color-support?
+if [[ "$TERM" != dumb ]]; then
+    #a1# List files with colors (\kbd{ls -b -CF \ldots})
+    alias ls='ls -b -CF '${ls_options:+"${ls_options[*]}"}
+    #a1# List all files, with colors (\kbd{ls -la \ldots})
+    alias la='ls -la '${ls_options:+"${ls_options[*]}"}
+    #a1# List files with long colored list, without dotfiles (\kbd{ls -l \ldots})
+    alias ll='ls -l '${ls_options:+"${ls_options[*]}"}
+    #a1# List files with long colored list, human readable sizes (\kbd{ls -hAl \ldots})
+    alias lh='ls -hAl '${ls_options:+"${ls_options[*]}"}
+    #a1# List files with long colored list, append qualifier to filenames (\kbd{ls -lF \ldots})\\&\quad(\kbd{/} for directories, \kbd{@} for symlinks ...)
+    alias l='ls -lF '${ls_options:+"${ls_options[*]}"}
+else
+    alias ls='ls -b -CF'
+    alias la='ls -la'
+    alias ll='ls -l'
+    alias lh='ls -hAl'
+    alias l='ls -lF'
+fi
+
+alias mdstat='cat /proc/mdstat'
+alias ...='cd ../../'
+
+# generate alias named "$KERNELVERSION-reboot" so you can use boot with kexec:
+if [[ -x /sbin/kexec ]] && [[ -r /proc/cmdline ]] ; then
+    alias "$(uname -r)-reboot"="kexec -l --initrd=/boot/initrd.img-"$(uname -r)" --command-line=\"$(cat /proc/cmdline)\" /boot/vmlinuz-"$(uname -r)""
+fi
+
+# see http://www.cl.cam.ac.uk/~mgk25/unicode.html#term for details
+alias term2iso="echo 'Setting terminal to iso mode' ; print -n '\e%@'"
+alias term2utf="echo 'Setting terminal to utf-8 mode'; print -n '\e%G'"
+
+# make sure it is not assigned yet
+[[ -n ${aliases[utf2iso]} ]] && unalias utf2iso
+utf2iso() {
+    if isutfenv ; then
+        for ENV in $(env | command grep -i '.utf') ; do
+            eval export "$(echo $ENV | sed 's/UTF-8/iso885915/ ; s/utf8/iso885915/')"
+        done
+    fi
+}
+
+# make sure it is not assigned yet
+[[ -n ${aliases[iso2utf]} ]] && unalias iso2utf
+iso2utf() {
+    if ! isutfenv ; then
+        for ENV in $(env | command grep -i '\.iso') ; do
+            eval export "$(echo $ENV | sed 's/iso.*/UTF-8/ ; s/ISO.*/UTF-8/')"
+        done
+    fi
+}
+
+# especially for roadwarriors using GNU screen and ssh:
+if ! check_com asc &>/dev/null ; then
+  asc() { autossh -t "$@" 'screen -RdU' }
+  compdef asc=ssh
+fi
+
+
+# debian stuff
+if [[ -r /etc/debian_version ]] ; then
+    #a3# Execute \kbd{apt-cache search}
+    alias acs='apt-cache search'
+    #a3# Execute \kbd{apt-cache show}
+    alias acsh='apt-cache show'
+    #a3# Execute \kbd{apt-cache policy}
+    alias acp='apt-cache policy'
+    #a3# Execute \kbd{apt-get dist-upgrade}
+    salias adg="apt-get dist-upgrade"
+    #a3# Execute \kbd{apt-get install}
+    salias agi="apt-get install"
+    #a3# Execute \kbd{aptitude install}
+    salias ati="aptitude install"
+    #a3# Execute \kbd{apt-get upgrade}
+    salias ag="apt-get upgrade"
+    #a3# Execute \kbd{apt-get update}
+    salias au="apt-get update"
+    #a3# Execute \kbd{aptitude update ; aptitude safe-upgrade}
+    salias -a up="aptitude update ; aptitude safe-upgrade"
+    #a3# Execute \kbd{dpkg-buildpackage}
+    alias dbp='dpkg-buildpackage'
+    #a3# Execute \kbd{grep-excuses}
+    alias ge='grep-excuses'
+
+    # get a root shell as normal user in live-cd mode:
+    if isgrmlcd && [[ $UID -ne 0 ]] ; then
+       alias su="sudo su"
+     fi
+
+    #a1# Take a look at the syslog: \kbd{\$PAGER /var/log/syslog}
+    salias llog="$PAGER /var/log/syslog"     # take a look at the syslog
+    #a1# Take a look at the syslog: \kbd{tail -f /var/log/syslog}
+    salias tlog="tail -f /var/log/syslog"    # follow the syslog
+fi
+
+# sort installed Debian-packages by size
+if check_com -c dpkg-query ; then
+    #a3# List installed Debian-packages sorted by size
+    alias debs-by-size="dpkg-query -Wf 'x \${Installed-Size} \${Package} \${Status}\n' | sed -ne '/^x  /d' -e '/^x \(.*\) install ok installed$/s//\1/p' | sort -nr"
+fi
+
+
+# wonderful idea of using "e" glob qualifier by Peter Stephenson
+# You use it as follows:
+# $ NTREF=/reference/file
+# $ ls -l *(e:nt:)
+# This lists all the files in the current directory newer than the reference file.
+# You can also specify the reference file inline; note quotes:
+# $ ls -l *(e:'nt ~/.zshenv':)
+is4 && nt() {
+    if [[ -n $1 ]] ; then
+        local NTREF=${~1}
+    fi
+    [[ $REPLY -nt $NTREF ]]
+}
+
+# shell functions
+
+#f1# Reload an autoloadable function
+freload() { while (( $# )); do; unfunction $1; autoload -U $1; shift; done }
+compdef _functions freload
+
+#f1# List symlinks in detail (more detailed version of 'readlink -f' and 'whence -s')
+sll() {
+    [[ -z "$1" ]] && printf 'Usage: %s <file(s)>\n' "$0" && return 1
+    for file in "$@" ; do
+        while [[ -h "$file" ]] ; do
+            ls -l $file
+            file=$(readlink "$file")
+        done
+    done
+}
+
+# TODO: Is it supported to use pager settings like this?
+#   PAGER='less -Mr' - If so, the use of $PAGER here needs fixing
+# with respect to wordsplitting. (ie. ${=PAGER})
+if check_com -c $PAGER ; then
+    #f3# View Debian's changelog of a given package
+    dchange() {
+        emulate -L zsh
+        if [[ -r /usr/share/doc/$1/changelog.Debian.gz ]] ; then
+            $PAGER /usr/share/doc/$1/changelog.Debian.gz
+        elif [[ -r /usr/share/doc/$1/changelog.gz ]] ; then
+            $PAGER /usr/share/doc/$1/changelog.gz
+        else
+            if check_com -c aptitude ; then
+                echo "No changelog for package $1 found, using aptitude to retrieve it."
+                if isgrml ; then
+                    aptitude -t unstable changelog $1
+                else
+                    aptitude changelog $1
+                fi
+            else
+                echo "No changelog for package $1 found, sorry."
+                return 1
+            fi
+        fi
+    }
+    _dchange() { _files -W /usr/share/doc -/ }
+    compdef _dchange dchange
+
+    #f3# View Debian's NEWS of a given package
+    dnews() {
+        emulate -L zsh
+        if [[ -r /usr/share/doc/$1/NEWS.Debian.gz ]] ; then
+            $PAGER /usr/share/doc/$1/NEWS.Debian.gz
+        else
+            if [[ -r /usr/share/doc/$1/NEWS.gz ]] ; then
+                $PAGER /usr/share/doc/$1/NEWS.gz
+            else
+                echo "No NEWS file for package $1 found, sorry."
+                return 1
+            fi
+        fi
+    }
+    _dnews() { _files -W /usr/share/doc -/ }
+    compdef _dnews dnews
+
+    #f3# View Debian's copyright of a given package
+    dcopyright() {
+        emulate -L zsh
+        if [[ -r /usr/share/doc/$1/copyright ]] ; then
+            $PAGER /usr/share/doc/$1/copyright
+        else
+            echo "No copyright file for package $1 found, sorry."
+            return 1
+        fi
+    }
+    _dcopyright() { _files -W /usr/share/doc -/ }
+    compdef _dcopyright dcopyright
+
+    #f3# View upstream's changelog of a given package
+    uchange() {
+        emulate -L zsh
+        if [[ -r /usr/share/doc/$1/changelog.gz ]] ; then
+            $PAGER /usr/share/doc/$1/changelog.gz
+        else
+            echo "No changelog for package $1 found, sorry."
+            return 1
+        fi
+    }
+    _uchange() { _files -W /usr/share/doc -/ }
+    compdef _uchange uchange
+fi
+
+# zsh profiling
+profile() {
+    ZSH_PROFILE_RC=1 $SHELL "$@"
+}
+
+#f1# Edit an alias via zle
+edalias() {
+    [[ -z "$1" ]] && { echo "Usage: edalias <alias_to_edit>" ; return 1 } || vared aliases'[$1]' ;
+}
+compdef _aliases edalias
+
+#f1# Edit a function via zle
+edfunc() {
+    [[ -z "$1" ]] && { echo "Usage: edfunc <function_to_edit>" ; return 1 } || zed -f "$1" ;
+}
+compdef _functions edfunc
+
+# grep for running process, like: 'any vim'
+any() {
+    emulate -L zsh
+    unsetopt KSH_ARRAYS
+    if [[ -z "$1" ]] ; then
+        echo "any - grep for process(es) by keyword" >&2
+        echo "Usage: any <keyword>" >&2 ; return 1
+    else
+        ps xauwww | grep -i "${grep_options[@]}" "[${1[1]}]${1[2,-1]}"
+    fi
+}
+
+
+# After resuming from suspend, system is paging heavily, leading to very bad interactivity.
+# taken from $LINUX-KERNELSOURCE/Documentation/power/swsusp.txt
+[[ -r /proc/1/maps ]] && \
+deswap() {
+    print 'Reading /proc/[0-9]*/maps and sending output to /dev/null, this might take a while.'
+    cat $(sed -ne 's:.* /:/:p' /proc/[0-9]*/maps | sort -u | grep -v '^/dev/')  > /dev/null
+    print 'Finished, running "swapoff -a; swapon -a" may also be useful.'
+}
+
+
+# After resuming from suspend, system is paging heavily, leading to very bad interactivity.
+# taken from $LINUX-KERNELSOURCE/Documentation/power/swsusp.txt
+[[ -r /proc/1/maps ]] && \
+deswap() {
+    print 'Reading /proc/[0-9]*/maps and sending output to /dev/null, this might take a while.'
+    cat $(sed -ne 's:.* /:/:p' /proc/[0-9]*/maps | sort -u | grep -v '^/dev/')  > /dev/null
+    print 'Finished, running "swapoff -a; swapon -a" may also be useful.'
+}
+
+# a wrapper for vim, that deals with title setting
+#   VIM_OPTIONS
+#       set this array to a set of options to vim you always want
+#       to have set when calling vim (in .zshrc.local), like:
+#           VIM_OPTIONS=( -p )
+#       This will cause vim to send every file given on the
+#       commandline to be send to it's own tab (needs vim7).
+if check_com vim; then
+    vim() {
+        VIM_PLEASE_SET_TITLE='yes' command vim ${VIM_OPTIONS} "$@"
+    }
+fi
+
+# make a backup of a file
+bk() {
+    cp -a "$1" "${1}_$(date --iso-8601=seconds)"
+}
+
+ssl_hashes=( sha512 sha256 sha1 md5 )
+
+for sh in ${ssl_hashes}; do
+    eval 'ssl-cert-'${sh}'() {
+        emulate -L zsh
+        if [[ -z $1 ]] ; then
+            printf '\''usage: %s <file>\n'\'' "ssh-cert-'${sh}'"
+            return 1
+        fi
+        openssl x509 -noout -fingerprint -'${sh}' -in $1
+    }'
+done; unset sh
+
+ssl-cert-fingerprints() {
+    emulate -L zsh
+    local i
+    if [[ -z $1 ]] ; then
+        printf 'usage: ssl-cert-fingerprints <file>\n'
+        return 1
+    fi
+    for i in ${ssl_hashes}
+        do ssl-cert-$i $1;
+    done
+}
+
+ssl-cert-info() {
+    emulate -L zsh
+    if [[ -z $1 ]] ; then
+        printf 'usage: ssl-cert-info <file>\n'
+        return 1
+    fi
+    openssl x509 -noout -text -in $1
+    ssl-cert-fingerprints $1
+}
+
+# make sure our environment is clean regarding colors
+for color in BLUE RED GREEN CYAN YELLOW MAGENTA WHITE ; unset $color
+
+# "persistent history"
+# just write important commands you always need to ~/.important_commands
+if [[ -r ~/.important_commands ]] ; then
+    fc -R ~/.important_commands
+fi
+
+# load the lookup subsystem if it's available on the system
+zrcautoload lookupinit && lookupinit
+
+# variables
+
+# set terminal property (used e.g. by msgid-chooser)
+# export COLORTERM="yes"
+
+## END OF FILE #################################################################
+# vim:filetype=zsh foldmethod=marker autoindent expandtab shiftwidth=4
+# Local variables:
+# mode: sh
+# End:

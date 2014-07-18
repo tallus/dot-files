@@ -1,0 +1,20 @@
+###############################################################################
+#         4.             Load a few modules                                   #
+###############################################################################
+is4 && \
+for mod in parameter complist deltochar mathfunc ; do
+    zmodload -i zsh/${mod} 2>/dev/null || print "Notice: no ${mod} available :("
+done
+
+# autoload zsh modules when they are referenced
+if is4 ; then
+    zmodload -a  zsh/stat    zstat
+    zmodload -a  zsh/zpty    zpty
+    zmodload -ap zsh/mapfile mapfile
+fi
+
+## END OF FILE #################################################################
+# vim:filetype=zsh foldmethod=marker autoindent expandtab shiftwidth=4
+# Local variables:
+# mode: sh
+# End:

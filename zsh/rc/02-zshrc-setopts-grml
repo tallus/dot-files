@@ -1,0 +1,80 @@
+#############################################################################
+#   2. Set useful options   (grml)                                          #
+#############################################################################
+
+
+# import new commands from the history file also in other zsh-session
+is4 && setopt share_history
+
+# save each command's beginning timestamp and the duration to the history file
+setopt extended_history
+
+# If a new command line being added to the history list duplicates an older
+# one, the older command is removed from the list
+is4 && setopt histignorealldups
+
+# remove command lines from the history list when the first character on the
+# line is a space
+setopt histignorespace
+
+# display PID when suspending processes as well
+setopt longlistjobs
+
+# try to avoid the 'zsh: no matches found...'
+setopt nonomatch
+
+# report the status of backgrounds jobs immediately
+setopt notify
+
+# whenever a command completion is attempted, make sure the entire command path
+# is hashed first.
+setopt hash_list_all
+
+# not just at the end
+setopt completeinword
+
+# Don't send SIGHUP to background processes when the shell exits.
+setopt nohup
+
+# use zsh style word splitting
+#setopt noshwordsplit
+
+# don't error out when unset parameters are used
+setopt unset
+
+# setting some default values
+NOCOR=${NOCOR:-0}
+NOMENU=${NOMENU:-0}
+NOPRECMD=${NOPRECMD:-0}
+COMMAND_NOT_FOUND=${COMMAND_NOT_FOUND:-0}
+GRML_ZSH_CNF_HANDLER=${GRML_ZSH_CNF_HANDLER:-/usr/share/command-not-found/command-not-found}
+BATTERY=${BATTERY:-0}
+GRMLSMALL_SPECIFIC=${GRMLSMALL_SPECIFIC:-1}
+ZSH_NO_DEFAULT_LOCALE=${ZSH_NO_DEFAULT_LOCALE:-0}
+
+typeset -ga ls_options
+typeset -ga grep_options
+if ls --help 2> /dev/null | grep -q GNU; then
+    ls_options=( --color=auto )
+elif [[ $OSTYPE == freebsd* ]]; then
+    ls_options=( -G )
+fi
+if grep --help 2> /dev/null | grep -q GNU || \
+   [[ $OSTYPE == freebsd* ]]; then
+    grep_options=( --color=auto )
+fi
+
+# support colors in less
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
+
+## END OF FILE #################################################################
+# vim:filetype=zsh foldmethod=marker autoindent expandtab shiftwidth=4
+# Local variables:
+# mode: sh
+# End:

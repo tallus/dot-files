@@ -1,0 +1,117 @@
+#################################################################
+#   9.      Help                                                #
+#################################################################
+
+#f1# Hints for the use of zsh on grml
+zsh-help() {
+    print "$bg[white]$fg[black]
+zsh-help - hints for use of zsh on grml
+=======================================$reset_color"
+
+    print '
+Main configuration of zsh happens in /etc/zsh/zshrc.
+That file is part of the package grml-etc-core, if you want to
+use them on a non-grml-system just get the tar.gz from
+http://deb.grml.org/ or (preferably) get it from the git repository:
+
+  http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
+
+This version of grml'\''s zsh setup does not use skel/.zshrc anymore.
+The file is still there, but it is empty for backwards compatibility.
+
+For your own changes use these two files:
+    $HOME/.zshrc.pre
+    $HOME/.zshrc.local
+
+The former is sourced very early in our zshrc, the latter is sourced
+very lately.
+
+System wide configuration without touching configuration files of grml
+can take place in /etc/zsh/zshrc.local.
+
+For information regarding zsh start at http://grml.org/zsh/
+
+Take a look at grml'\''s zsh refcard:
+% xpdf =(zcat /usr/share/doc/grml-docs/zsh/grml-zsh-refcard.pdf.gz)
+
+Check out the main zsh refcard:
+% '$BROWSER' http://www.bash2zsh.com/zsh_refcard/refcard.pdf
+
+And of course visit the zsh-lovers:
+% man zsh-lovers
+
+You can adjust some options through environment variables when
+invoking zsh without having to edit configuration files.
+Basically meant for bash users who are not used to the power of
+the zsh yet. :)
+
+  "NOCOR=1    zsh" => deactivate automatic correction
+  "NOMENU=1   zsh" => do not use auto menu completion
+                      (note: use ctrl-d for completion instead!)
+  "NOPRECMD=1 zsh" => disable the precmd + preexec commands (set GNU screen title)
+  "NOTITLE=1  zsh" => disable setting the title of xterms without disabling
+                      preexec() and precmd() completely
+  "BATTERY=1  zsh" => activate battery status (via acpi) on right side of prompt
+  "COMMAND_NOT_FOUND=1 zsh"
+                   => Enable a handler if an external command was not found
+                      The command called in the handler can be altered by setting
+                      the GRML_ZSH_CNF_HANDLER variable, the default is:
+                      "/usr/share/command-not-found/command-not-found"
+
+A value greater than 0 is enables a feature; a value equal to zero
+disables it. If you like one or the other of these settings, you can
+add them to ~/.zshrc.pre to ensure they are set when sourcing grml'\''s
+zshrc.'
+
+    print "
+$bg[white]$fg[black]
+Please report wishes + bugs to the grml-team: http://grml.org/bugs/
+Enjoy your grml system with the zsh!$reset_color"
+}
+
+#f1# Provides useful information on globbing
+H-Glob() {
+    echo -e "
+    /      directories
+    .      plain files
+    @      symbolic links
+    =      sockets
+    p      named pipes (FIFOs)
+    *      executable plain files (0100)
+    %      device files (character or block special)
+    %b     block special files
+    %c     character special files
+    r      owner-readable files (0400)
+    w      owner-writable files (0200)
+    x      owner-executable files (0100)
+    A      group-readable files (0040)
+    I      group-writable files (0020)
+    E      group-executable files (0010)
+    R      world-readable files (0004)
+    W      world-writable files (0002)
+    X      world-executable files (0001)
+    s      setuid files (04000)
+    S      setgid files (02000)
+    t      files with the sticky bit (01000)
+
+  print *(m-1)          # Files modified up to a day ago
+  print *(a1)           # Files accessed a day ago
+  print *(@)            # Just symlinks
+  print *(Lk+50)        # Files bigger than 50 kilobytes
+  print *(Lk-50)        # Files smaller than 50 kilobytes
+  print **/*.c          # All *.c files recursively starting in \$PWD
+  print **/*.c~file.c   # Same as above, but excluding 'file.c'
+  print (foo|bar).*     # Files starting with 'foo' or 'bar'
+  print *~*.*           # All Files that do not contain a dot
+  chmod 644 *(.^x)      # make all plain non-executable files publically readable
+  print -l *(.c|.h)     # Lists *.c and *.h
+  print **/*(g:users:)  # Recursively match all files that are owned by group 'users'
+  echo /proc/*/cwd(:h:t:s/self//) # Analogous to >ps ax | awk '{print $1}'<"
+}
+alias help-zshglob=H-Glob
+
+## END OF FILE #################################################################
+# vim:filetype=zsh foldmethod=marker autoindent expandtab shiftwidth=4
+# Local variables:
+# mode: sh
+# End:

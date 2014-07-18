@@ -1,0 +1,129 @@
+#############################################################################
+#   1.      check for versions (compatibility reasons)                      #
+#############################################################################
+
+is4(){
+    [[ $ZSH_VERSION == <4->* ]] && return 0
+    return 1
+}
+
+is41(){
+    [[ $ZSH_VERSION == 4.<1->* || $ZSH_VERSION == <5->* ]] && return 0
+    return 1
+}
+
+is42(){
+    [[ $ZSH_VERSION == 4.<2->* || $ZSH_VERSION == <5->* ]] && return 0
+    return 1
+}
+
+is425(){
+    [[ $ZSH_VERSION == 4.2.<5->* || $ZSH_VERSION == 4.<3->* || $ZSH_VERSION == <5->* ]] && return 0
+    return 1
+}
+
+is43(){
+    [[ $ZSH_VERSION == 4.<3->* || $ZSH_VERSION == <5->* ]] && return 0
+    return 1
+}
+
+is433(){
+    [[ $ZSH_VERSION == 4.3.<3->* || $ZSH_VERSION == 4.<4->* \
+                                 || $ZSH_VERSION == <5->* ]] && return 0
+    return 1
+}
+
+is437(){
+    [[ $ZSH_VERSION == 4.3.<7->* || $ZSH_VERSION == 4.<4->* \
+                                 || $ZSH_VERSION == <5->* ]] && return 0
+    return 1
+}
+
+is439(){
+    [[ $ZSH_VERSION == 4.3.<9->* || $ZSH_VERSION == 4.<4->* \
+                                 || $ZSH_VERSION == <5->* ]] && return 0
+    return 1
+}
+
+#f1# Checks whether or not you're running grml
+isgrml(){
+    [[ -f /etc/grml_version ]] && return 0
+    return 1
+}
+
+#f1# Checks whether or not you're running a grml cd
+isgrmlcd(){
+    [[ -f /etc/grml_cd ]] && return 0
+    return 1
+}
+
+if isgrml ; then
+#f1# Checks whether or not you're running grml-small
+    isgrmlsmall() {
+        if [[ ${${${(f)"$(</etc/grml_version)"}%% *}##*-} == 'small' ]]; then
+            return 0
+        fi
+        return 1
+    }
+else
+    isgrmlsmall() { return 1 }
+fi
+
+isdarwin(){
+    [[ $OSTYPE == darwin* ]] && return 0
+    return 1
+}
+
+isfreebsd(){
+    [[ $OSTYPE == freebsd* ]] && return 0
+    return 1
+}
+
+#f1# are we running within an utf environment?
+isutfenv() {
+    case "$LANG $CHARSET $LANGUAGE" in
+        *utf*) return 0 ;;
+        *UTF*) return 0 ;;
+        *)     return 1 ;;
+    esac
+}
+
+# check for user, if not running as root set $SUDO to sudo
+(( EUID != 0 )) && SUDO='sudo' || SUDO=''
+
+# NOTE SURE WHAT THESE DO!
+
+# autoload wrapper - use this one instead of autoload directly
+# We need to define this function as early as this, because autoloading
+# 'is-at-least()' needs it.
+function zrcautoload() {
+    emulate -L zsh
+    setopt extended_glob
+    local fdir ffile
+    local -i ffound
+
+    ffile=$1
+    (( ffound = 0 ))
+    for fdir in ${fpath} ; do
+        [[ -e ${fdir}/${ffile} ]] && (( ffound = 1 ))
+    done
+
+    (( ffound == 0 )) && return 1
+    if [[ $ZSH_VERSION == 3.1.<6-> || $ZSH_VERSION == <4->* ]] ; then
+        autoload -U ${ffile} || return 1
+    else
+        autoload ${ffile} || return 1
+    fi
+    return 0
+}
+
+# Load is-at-least() for more precise version checks Note that this test will
+# *always* fail, if the is-at-least function could not be marked for
+# autoloading.
+zrcautoload is-at-least || is-at-least() { return 1 }
+
+## END OF FILE #################################################################
+# vim:filetype=zsh foldmethod=marker autoindent expandtab shiftwidth=4
+# Local variables:
+# mode: sh
+# End:

@@ -1,0 +1,74 @@
+#################################################
+# 10.   aliases                                 #
+#################################################
+
+# general
+#a2# Execute \kbd{du -sch}
+alias da='du -sch'
+#a2# Execute \kbd{jobs -l}
+alias j='jobs -l'
+
+# listing stuff
+#a2# Execute \kbd{ls -lSrah}
+alias dir="ls -lSrah"
+#a2# Only show dot-directories
+alias lad='ls -d .*(/)'
+#a2# Only show dot-files
+alias lsa='ls -a .*(.)'
+#a2# Only files with setgid/setuid/sticky flag
+alias lss='ls -l *(s,S,t)'
+#a2# Only show symlinks
+alias lsl='ls -l *(@)'
+#a2# Display only executables
+alias lsx='ls -l *(*)'
+#a2# Display world-{readable,writable,executable} files
+alias lsw='ls -ld *(R,W,X.^ND/)'
+#a2# Display the ten biggest files
+alias lsbig="ls -flh *(.OL[1,10])"
+#a2# Only show directories
+alias lsd='ls -d *(/)'
+#a2# Only show empty directories
+alias lse='ls -d *(/^F)'
+#a2# Display the ten newest files
+alias lsnew="ls -rtlh *(D.om[1,10])"
+#a2# Display the ten oldest files
+alias lsold="ls -rtlh *(D.Om[1,10])"
+#a2# Display the ten smallest files
+alias lssmall="ls -Srl *(.oL[1,10])"
+#a2# Display the ten newest directories and ten newest .directories
+alias lsnewdir="ls -rthdl *(/om[1,10]) .*(D/om[1,10])"
+#a2# Display the ten oldest directories and ten oldest .directories
+alias lsolddir="ls -rthdl *(/Om[1,10]) .*(D/Om[1,10])"
+
+# some useful aliases
+#a2# Remove current empty directory. Execute \kbd{cd ..; rmdir \$OLDCWD}
+alias rmcdir='cd ..; rmdir $OLDPWD || cd $OLDPWD'
+
+#a2# ssh with StrictHostKeyChecking=no \\&\quad and UserKnownHostsFile unset
+alias insecssh='ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null"'
+#a2# scp with StrictHostKeyChecking=no \\&\quad and UserKnownHostsFile unset
+alias insecscp='scp -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null"'
+
+# work around non utf8 capable software in utf environment via $LANG and luit
+if check_com isutfenv && check_com luit ; then
+    if check_com -c mrxvt ; then
+        isutfenv && [[ -n "$LANG" ]] && \
+            alias mrxvt="LANG=${LANG/(#b)(*)[.@]*/$match[1].iso885915} luit mrxvt"
+    fi
+
+    if check_com -c aterm ; then
+        isutfenv && [[ -n "$LANG" ]] && \
+            alias aterm="LANG=${LANG/(#b)(*)[.@]*/$match[1].iso885915} luit aterm"
+    fi
+
+    if check_com -c centericq ; then
+        isutfenv && [[ -n "$LANG" ]] && \
+            alias centericq="LANG=${LANG/(#b)(*)[.@]*/$match[1].iso885915} luit centericq"
+    fi
+fi
+
+## END OF FILE #################################################################
+# vim:filetype=zsh foldmethod=marker autoindent expandtab shiftwidth=4
+# Local variables:
+# mode: sh
+# End:
