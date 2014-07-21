@@ -34,12 +34,12 @@ au InsertEnter * set nocursorline
 au InsertLeave * set cursorline
 
 " for python 
-filetype indent plugin on
-filetype plugin on 
 set tabstop=4
 set expandtab
 set softtabstop=4
 set shiftwidth=4
+filetype indent plugin on
+filetype plugin on 
 filetype indent on
 " set omnifunc=syntaxcomplete#Complete
 " turn off docstring pop up in jedi-vim
