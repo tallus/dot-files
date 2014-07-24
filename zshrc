@@ -129,7 +129,8 @@ source /etc/bash_completion.d/virtualenvwrapper
 ## xterm fun!
 #if [ $TERM = "xterm" ]; then
 #echo "                               Welcome to" # | lolcat
-	figlet -f fraktur " hi!" | lolcat  #"    $HOST" | lolcat
+	#figlet -f fraktur " hi!" | lolcat  #"    $HOST" | lolcat
+	figlet -f slant  "    $HOST" | lolcat
 	weather_report
 #fi
 
@@ -189,8 +190,6 @@ source $ZSH/oh-my-zsh.sh
 # Who doesn't want home and end to work?
 # Key bindings
 #
-#unsetopt INC_APPEND_HISTORY
-#setopt APPEND_HISTORY
 unsetopt SHARE_HISTORY
 
 bindkey '\e[1~' beginning-of-line
@@ -224,4 +223,7 @@ bindkey "^[s" insert-sudo
 # End
 
 
-
+if [[ -e /rvms ]]; then
+    PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+    source ~/.rvm/scripts/rvm
+fi
