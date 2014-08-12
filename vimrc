@@ -167,4 +167,7 @@ let g:tagbar_type_mkd = {
 " disable folding in markdown
 let g:vim_markdown_folding_disabled=1
 
+"better git commits
+autocmd Filetype gitcommit setlocal spell textwidth=72
+
 set tags=~/.mytags
