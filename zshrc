@@ -130,7 +130,11 @@ source /etc/bash_completion.d/virtualenvwrapper
 #if [ $TERM = "xterm" ]; then
 #echo "                               Welcome to" # | lolcat
 	#figlet -f fraktur " hi!" | lolcat  #"    $HOST" | lolcat
+if [ $HOST = 'PM-E6440' ]; then
+    figlet -f fraktur " hi!" | lolcat
+else
 	figlet -f slant  "    $HOST" | lolcat
+fi
 	weather_report
 #fi
 
