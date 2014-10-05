@@ -4,7 +4,7 @@ syntax enable
 set nocompatible
 set autoindent
 
-" Use 256 colours 
+" Use 256 colours
 " probably unecessary if we have set things up right elsewhere
 set t_Co=256
 
@@ -14,7 +14,7 @@ set t_Co=256
 :au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 :au InsertLeave * match ExtraWhitespace /\s\+$/
 
-set background=light   " default 
+set background=light   " default
 colors peaksea
 hi Normal ctermbg=None
 "colorscheme solarized
@@ -33,7 +33,7 @@ hi Spellbad cterm=undercurl,bold
 au InsertEnter * set nocursorline
 au InsertLeave * set cursorline
 
-" for python 
+" for python
 set tabstop=4
 set expandtab
 set softtabstop=4
@@ -44,6 +44,11 @@ filetype indent on
 " set omnifunc=syntaxcomplete#Complete
 " turn off docstring pop up in jedi-vim
 autocmd FileType python setlocal completeopt-=preview
+" Jump to the last position when reopening a file
+ if has("autocmd")
+   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
 " and auto arguments
 let g:jedi#show_call_signatures=0
 "set underscore as word boundary
