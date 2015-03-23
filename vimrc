@@ -170,4 +170,12 @@ let g:vim_markdown_folding_disabled=1
 "better git commits
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+if has("autocmd")
+   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
+
+
 set tags=~/.mytags

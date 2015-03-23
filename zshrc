@@ -101,6 +101,9 @@ alias mkpy="$HOME/bin/mkscript python"
 alias mkrb="$HOME/bin/mkscript ruby"
 # run csound as root with realtime scheduling
 alias rtcs="sudo csound -d -o dac --sched"
+alias vi=vim
+alias ack=ack-grep
+
 
 wat(){
     preexec() { print -nr $'\033'"]2;$1"$'\a' }
@@ -184,13 +187,13 @@ CASE_SENSITIVE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git nyan python pip virtualenvwrapper lol web-search ruby) 
+plugins=(git nyan python pip virtualenvwrapper lol web-search ruby zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
-#PROMPT=$'%n@%m:$(prompt_git_info)%{${fg[default]}%}%~%# ' 
+#PROMPT=$'%n@%m:$(prompt_git_info)%{${fg[default]}%}%~%# '
 # Who doesn't want home and end to work?
 # Key bindings
 #
