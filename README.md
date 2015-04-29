@@ -18,10 +18,18 @@ git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
 git clone git://github.com/tallus/dot-files.git
 sudo gem install lolcat
 
+# useful command line things
 sudo apt-get install vim-nox aptitude ipython toilet
+# Set a useful editor/not Nano
+sudo  update-alternatives --config editor
+#useful  GUI things
 sudo apt-get install terminator chromium-browser unity-tweak-tool gthumb inkscape gimp exaile
+#useful server stuff
 sudo apt-get install postgresql-9.3 postgresql-client-9.3 ipython python-psycopg2 nginx openssh-server ansible
+# make things look pretty
 sudo add-apt-repository ppa:tiheum/equinox
 sudo add-apt-repository ppa:webupd8team/themes
 sudo apt-get update && sudo apt-get install faenza-icon-theme faience-azur-dark  faience-icon-theme
+
+# put menus in windows not panel System Settings -> Appearance -> Behaviour
 ````
