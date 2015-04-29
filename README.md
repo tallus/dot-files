@@ -14,6 +14,7 @@ sudo apt-get install git zsh python-pip python-virtualenv virtualenvwrapper ack-
 curl -L http://install.ohmyz.sh | sh
 cd ~/.oh-my-zsh/custom/plugins
 git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
+<<<<<<< HEAD
 git clone git://github.com/tallus/dot-files.git
 sudo gem install lolcat
 

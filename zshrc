@@ -126,7 +126,10 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/code
 export VIRTUALENVWRAPPER_SCRIPT=/etc/bash_completion.d/virtualenvwrapper
 source /etc/bash_completion.d/virtualenvwrapper
-
+if [[ -a ~/bin/mkvirt ]]; then
+    alias mkvirtualenv-real='mkvirtualenv'
+    alias mkvirtualenv='mkvirt'
+fi
 
 
 ## xterm fun!
