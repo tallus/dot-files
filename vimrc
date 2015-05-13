@@ -55,6 +55,12 @@ let g:jedi#show_call_signatures=0
 set iskeyword-=_
 " so we can see the leader key.
 set showcmd
+"Syntastic checkers
+let g:syntastic_python_checkers = ['flake8', 'frosted', 'pep8', 'prospector', 'pyflakes', 'python', 'pylint', 'pylama', 'pylint-django']
+let g:syntastic_python_pylint_args = "--disable=F0401 --generated-members=objects"
+
+
+
 
 " set cursor shape
 " N.B. Terminator at least overides this, gnome terminal doesn't 
