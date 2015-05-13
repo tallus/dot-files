@@ -56,7 +56,7 @@ set iskeyword-=_
 " so we can see the leader key.
 set showcmd
 "Syntastic checkers
-let g:syntastic_python_checkers = ['flake8', 'frosted', 'pep8', 'prospector', 'pyflakes', 'python', 'pylint', 'pylama', 'pylint-django']
+let g:syntastic_python_checkers = ['flake8', 'prospector',  'python', 'pylint', 'pylama']
 let g:syntastic_python_pylint_args = "--disable=F0401 --generated-members=objects"
 
 
