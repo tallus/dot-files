@@ -190,7 +190,7 @@ CASE_SENSITIVE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git nyan python pip virtualenvwrapper lol web-search ruby zsh-syntax-highlighting)
+plugins=(git nyan python pip virtualenvwrapper lol web-search ruby zsh-syntax-highlighting history)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -216,7 +216,7 @@ bindkey '\e.' insert-last-word
 [[ -z "$terminfo[kcud1]" ]] || bindkey -M viins "$terminfo[kcud1]" vi-down-line-or-history
 
 
-bindkey -v
+#bindkey -v
 
 # Insert sudo at beginning of line with Alt-S
 insert_sudo () { zle beginning-of-line; zle -U "sudo " }
