@@ -14,7 +14,7 @@ compinit
 # End of lines added by compinstall
 setopt autopushd pushdignoredups # used by cd-
 
-#PATH="$HOME/bin:$PATH"
+PATH="$HOME/bin:$PATH"
 
 # Autoload screen if we aren't in it.  (Thanks Fjord!)
 # Note we have to account for terminator if we want
@@ -86,24 +86,21 @@ rcd(){
     cd -
     clear
 }
-
-hello(){
-    if [ $HOST = 'PM-E6440' ]; then
-        figlet -f fraktur " hi!" | lolcat
-    elif [ $HOST = 'xen-pmunday-1.ksjc.sh.colo' ]; then
-        clear
-        echo $HOST
-        cowsay -f three-eyes WELCOME TO THE XEN HOST!
-    elif [ ! -z  $commands[figlet] ] && [ ! -z  $commands[lolcat] ];then
-        echo "               Welcome to" | lolcat;
-	    figlet -f slant  "    $HOST" | lolcat
-    elif [ ! -z  $commands[figlet] ]; then
-        echo "               Welcome to" | lolcat;
-        figlet -f slant  "    $HOST"
-    else
-        echo "Welcome to $HOST"
-    fi
-}
+# only if the command doesn't exist i.e. in ~/bin
+# alternatively add to zshrc-local to overide this
+if [ -z $commands[hello] ]; then
+    hello(){
+        if [ ! -z  $commands[figlet] ] && [ ! -z  $commands[lolcat] ];then
+            echo "               Welcome to" | lolcat;
+            figlet -f slant  "    $HOST" | lolcat
+        elif [ ! -z  $commands[figlet] ]; then
+            echo "               Welcome to" | lolcat;
+            figlet -f slant  "    $HOST"
+        else
+            echo "Welcome to $HOST"
+        fi
+    }
+fi
 # Aliases
 
 #alias r='screen -D -R'
@@ -156,22 +153,20 @@ export PIP_REQUIRE_VIRTUALENV=true
 export PIP_RESPECT_VIRTUALENV=true
 export VIRTUALENV_USE_DISTRIBUTE=true
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
-export PATH=~/web-serpng/code/serpng/tools/bin:"$PATH"
 export VIRTUALENVWRAPPER_SCRIPT=/usr/bin/virtualenvwrapper.sh
+export PATH=~/web-serpng/code/serpng/tools/bin:"$PATH"
 source /usr/bin/virtualenvwrapper.sh
 
 alias mkvirtualenv-real='mkvirtualenv'
 alias mkvirtualenv='mkvirt'
 
-
-
-## xterm fun!
-hello
-
 ## source local
 if [  -e ~/.zshrc-local ]; then
     source ~/.zshrc-local
 fi
+
+## xterm fun!
+hello
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
@@ -272,6 +267,5 @@ bindkey "^[s" insert-sudo
 #    source ~/.rvm/scripts/rvm
 #fi
 #PATH=$PATH:/home/pmunday/web-serpng/code/serpng/tools/bin
-PATH=~/bin:$PATH
 #export TERM=screen-256color
 
