@@ -169,7 +169,7 @@ alias mkvirtualenv='mkvirt'
 hello
 
 ## source local
-if [ [ -e ~/.zshrc-local ]; then
+if [  -e ~/.zshrc-local ]; then
     source ~/.zshrc-local
 fi
 
