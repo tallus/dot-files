@@ -12,7 +12,7 @@ zstyle :compinstall filename '/home/paul/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
-setopt autopushd pushdignoredups # used by cd-  
+setopt autopushd pushdignoredups # used by cd-
 
 #PATH="$HOME/bin:$PATH"
 
@@ -24,9 +24,9 @@ if [ $PPWD ]; then
 fi
 
 #if [[ $(cat /proc/$PPID/cmdline) =~ terminator ]]; then
-#  screen -RR 
-#elif [[ $STY = '' ]]; then 
-#    exec screen -RR 
+#  screen -RR
+#elif [[ $STY = '' ]]; then
+#    exec screen -RR
 #fi
 
 #if [[ $STY = '' ]]; then  exec screen -RR ;fi
@@ -63,11 +63,16 @@ export  EDITOR=/usr/bin/vim
 # functions
 
 bye(){
-    clear
-    echo "kernel panic:"
-    bofh
-    figlet -f fraktur "bye!"  | lolcat
-    sleep 1.2s 
+    if [ -e $HOME/.bye ]; then
+        rm $HOME/.bye
+    else
+        touch $HOME/.bye
+        clear
+        echo "kernel panic:"
+        $HOME/bin/bofh
+        #figlet -f fraktur "bye!"  | lolcat
+        sleep 1.2s
+    fi
     exit
 }
 
@@ -77,9 +82,27 @@ sprompt(){
 
 
 rcd(){
-    cd 
+    cd
     cd -
     clear
+}
+
+hello(){
+    if [ $HOST = 'PM-E6440' ]; then
+        figlet -f fraktur " hi!" | lolcat
+    elif [ $HOST = 'xen-pmunday-1.ksjc.sh.colo' ]; then
+        clear
+        echo $HOST
+        cowsay -f three-eyes WELCOME TO THE XEN HOST!
+    elif [ ! -z  $commands[figlet] ] && [ ! -z  $commands[lolcat] ];then
+        echo "               Welcome to" | lolcat;
+	    figlet -f slant  "    $HOST" | lolcat
+    elif [ ! -z  $commands[figlet] ]; then
+        echo "               Welcome to" | lolcat;
+        figlet -f slant  "    $HOST"
+    else
+        echo "Welcome to $HOST"
+    fi
 }
 # Aliases
 
@@ -96,14 +119,17 @@ alias exit=bye
 alias duc='du -ch --max-depth=1'
 alias duc2='du -ch --max-depth=2'
 alias duc3='du -ch --max-depth=3'
-alias mkbash="$HOME/bin/mkscript bash" 
+alias mkbash="$HOME/bin/mkscript bash"
 alias mkpy="$HOME/bin/mkscript python"
 alias mkrb="$HOME/bin/mkscript ruby"
-# run csound as root with realtime scheduling
-alias rtcs="sudo csound -d -o dac --sched"
-alias vi=vim
-alias ack=ack-grep
-
+alias vi=gv
+alias view="vim -R"
+alias tmux="tmux -2"
+alias pack="ack --python"
+# alias thefuck ->fuck) if it's there
+if [ ! -z  $commands[thefuck] ]; then
+    eval "$(thefuck --alias)"
+fi
 
 wat(){
     preexec() { print -nr $'\033'"]2;$1"$'\a' }
@@ -123,26 +149,29 @@ if [[ -x "`whence -p dircolors`" ]]; then
 
 # virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/code
-export VIRTUALENVWRAPPER_SCRIPT=/etc/bash_completion.d/virtualenvwrapper
-source /etc/bash_completion.d/virtualenvwrapper
-if [[ -a ~/bin/mkvirt ]]; then
-    alias mkvirtualenv-real='mkvirtualenv'
-    alias mkvirtualenv='mkvirt'
-fi
+export PROJECT_HOME=$HOME/projects
+#export VIRTUALENVWRAPPER_SCRIPT=/etc/bash_completion.d/virtualenvwrapper
+#source /etc/bash_completion.d/virtualenvwrapper
+export PIP_REQUIRE_VIRTUALENV=true
+export PIP_RESPECT_VIRTUALENV=true
+export VIRTUALENV_USE_DISTRIBUTE=true
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+export PATH=~/web-serpng/code/serpng/tools/bin:"$PATH"
+export VIRTUALENVWRAPPER_SCRIPT=/usr/bin/virtualenvwrapper.sh
+source /usr/bin/virtualenvwrapper.sh
+
+alias mkvirtualenv-real='mkvirtualenv'
+alias mkvirtualenv='mkvirt'
+
 
 
 ## xterm fun!
-#if [ $TERM = "xterm" ]; then
-#echo "                               Welcome to" # | lolcat
-	#figlet -f fraktur " hi!" | lolcat  #"    $HOST" | lolcat
-if [ $HOST = 'PM-E6440' ]; then
-    figlet -f fraktur " hi!" | lolcat
-else
-	figlet -f slant  "    $HOST" | lolcat
+hello
+
+## source local
+if [ [ -e ~/.zshrc-local ]; then
+    source ~/.zshrc-local
 fi
-	weather_report
-#fi
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
@@ -190,7 +219,12 @@ CASE_SENSITIVE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git nyan python pip virtualenvwrapper lol web-search ruby zsh-syntax-highlighting)
+plugins=(git nyan python pip virtualenvwrapper lol web-search ruby tmux zsh-syntax-highlighting history)
+
+# Customize tmux plugin
+ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOCONNECT=false
+ZSH_TMUX_AUTOQUIT=true
 
 source $ZSH/oh-my-zsh.sh
 
@@ -233,7 +267,11 @@ bindkey "^[s" insert-sudo
 # End
 
 
-if [[ -e /rvms ]]; then
-    PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-    source ~/.rvm/scripts/rvm
-fi
+#if [[ -e /rvms ]]; then
+#    PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+#    source ~/.rvm/scripts/rvm
+#fi
+#PATH=$PATH:/home/pmunday/web-serpng/code/serpng/tools/bin
+PATH=~/bin:$PATH
+#export TERM=screen-256color
+
