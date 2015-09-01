@@ -250,7 +250,7 @@ bindkey '\e.' insert-last-word
 [[ -z "$terminfo[kcud1]" ]] || bindkey -M viins "$terminfo[kcud1]" vi-down-line-or-history
 
 
-bindkey -v
+#bindkey -v
 
 # Insert sudo at beginning of line with Alt-S
 insert_sudo () { zle beginning-of-line; zle -U "sudo " }
