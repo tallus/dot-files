@@ -215,6 +215,10 @@ CASE_SENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git nyan python pip virtualenvwrapper lol web-search ruby tmux zsh-syntax-highlighting history)
+# add plugins from zshrc-local
+if [ ! -z "$plugins-local" ]; then
+    plugins=($plugins $plugins-local)
+fi
 
 # Customize tmux plugin
 ZSH_TMUX_AUTOSTART=true
