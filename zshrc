@@ -216,8 +216,8 @@ CASE_SENSITIVE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git nyan python pip virtualenvwrapper lol web-search ruby zsh-syntax-highlighting history vi-mode)
 # add plugins from zshrc-local
-if [ ! -z "$plugins-local" ]; then
-    plugins=($plugins $plugins-local)
+if [ ${#localplugins} -ge 1 ]; then
+    plugins=($plugins $localplugins)
 fi
 
 # Customize tmux plugin
