@@ -119,7 +119,7 @@ alias duc3='du -ch --max-depth=3'
 alias mkbash="$HOME/bin/mkscript bash"
 alias mkpy="$HOME/bin/mkscript python"
 alias mkrb="$HOME/bin/mkscript ruby"
-alias vi=gv
+alias vi=vim
 alias view="vim -R"
 alias tmux="tmux -2"
 alias pack="ack --python"
@@ -146,16 +146,22 @@ if [[ -x "`whence -p dircolors`" ]]; then
 
 # virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/projects
-#export VIRTUALENVWRAPPER_SCRIPT=/etc/bash_completion.d/virtualenvwrapper
-#source /etc/bash_completion.d/virtualenvwrapper
+if [ -e $HOME/code ]; then
+    export PROJECT_HOME=$HOME/code
+else
+    export PROJECT_HOME=$HOME/projects
+fi
 export PIP_REQUIRE_VIRTUALENV=true
 export PIP_RESPECT_VIRTUALENV=true
 export VIRTUALENV_USE_DISTRIBUTE=true
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
-export VIRTUALENVWRAPPER_SCRIPT=/usr/bin/virtualenvwrapper.sh
-export PATH=~/web-serpng/code/serpng/tools/bin:"$PATH"
-source /usr/bin/virtualenvwrapper.sh
+if [ -e /etc/bash_completion.d/virtualenvwrapper ] ; then
+    export VIRTUALENVWRAPPER_SCRIPT=/etc/bash_completion.d/virtualenvwrapper
+    source /etc/bash_completion.d/virtualenvwrapper
+else
+    export VIRTUALENVWRAPPER_SCRIPT=/usr/bin/virtualenvwrapper.sh
+    source /usr/bin/virtualenvwrapper.sh
+fi
 
 alias mkvirtualenv-real='mkvirtualenv'
 alias mkvirtualenv='mkvirt'
@@ -230,10 +236,13 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
+
 #PROMPT=$'%n@%m:$(prompt_git_info)%{${fg[default]}%}%~%# '
 # Who doesn't want home and end to work?
 # Key bindings
 #
+
+# these might need to go after on-my-zsh is called
 unsetopt SHARE_HISTORY
 
 bindkey '\e[1~' beginning-of-line
