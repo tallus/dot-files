@@ -64,7 +64,6 @@ let g:syntastic_python_checkers = ['flake8', 'pylint', 'pep8', 'frosted']
 "prospector ,  'python', 'pylama']
 let g:syntastic_python_pylint_args = "--disable=F0401 --generated-members=objects"
 
-
 " set cursor shape
 " N.B. Terminator at least overides this, gnome terminal doesn't
 " let you sent (no) blink
