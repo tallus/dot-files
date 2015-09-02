@@ -3,6 +3,8 @@ dot-files
 
 Erm, my dot files?
 
+Use .zshrc-local to add custom/local aliases and functions etc
+
 Also I use oh-my-zsh, the tallpaul.zsh-theme is for that.
 
 It's a custom minimalist zsh theme with git, python virtualenv  and command
@@ -14,9 +16,9 @@ sudo apt-get install git zsh python-pip python-virtualenv virtualenvwrapper ack-
 curl -L http://install.ohmyz.sh | sh
 cd ~/.oh-my-zsh/custom/plugins
 git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
-<<<<<<< HEAD
 git clone git://github.com/tallus/dot-files.git
 sudo gem install lolcat
+sudo pip install thefuck
 
 # useful command line things
 sudo apt-get install vim-nox aptitude ipython toilet
