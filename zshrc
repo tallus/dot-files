@@ -63,14 +63,18 @@ export  EDITOR=/usr/bin/vim
 # functions
 
 bye(){
-    if [ -e $HOME/.bye ]; then
-        rm $HOME/.bye
+    if [ ${plugins[(i)tmux]} -le ${#plugins} ] && [ -e $HOME/.bye ]; then
+            rm $HOME/.bye
     else
-        touch $HOME/.bye
+        if [ ${plugins[(i)tmux]} -le ${#plugins} ]; then
+            touch $HOME/.bye
+        fi
         clear
         echo "kernel panic:"
         $HOME/bin/bofh
-        #figlet -f fraktur "bye!"  | lolcat
+        if [ ! -z  $commands[figlet] ] && [ ! -z  $commands[lolcat] ];then
+            figlet -f fraktur "bye!"  | lolcat
+        fi
         sleep 1.2s
     fi
     exit
