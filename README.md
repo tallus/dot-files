@@ -3,6 +3,8 @@ dot-files
 
 Erm, my dot files?
 
+Use .zshrc-local to add custom/local aliases and functions etc
+
 Also I use oh-my-zsh, the tallpaul.zsh-theme is for that.
 
 It's a custom minimalist zsh theme with git, python virtualenv  and command
