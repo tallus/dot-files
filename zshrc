@@ -214,7 +214,7 @@ CASE_SENSITIVE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git nyan python pip virtualenvwrapper lol web-search ruby tmux zsh-syntax-highlighting history)
+plugins=(git nyan python pip virtualenvwrapper lol web-search ruby tmux zsh-syntax-highlighting history vi-mode)
 # add plugins from zshrc-local
 if [ ! -z "$plugins-local" ]; then
     plugins=($plugins $plugins-local)
