@@ -24,7 +24,7 @@ sudo pip install thefuck
 Backup existing dot files
 Add symlinks 
 
-i.e. ln -s .zshrc dot-files/zshrc
+i.e. ln -s dot-files/zshrc .zshrc
 
 # useful command line things
 sudo apt-get install vim-nox aptitude ipython toilet
