@@ -21,10 +21,14 @@ git clone https://github.com/tallus/dot-files.git
 sudo gem install lolcat
 sudo pip install pathlib thefuck
 
-Backup existing dot files
-Add symlinks 
+# Backup existing dot files
+# Add symlinks 
+# i.e. ln -s dot-files/zshrc .zshrc
 
-i.e. ln -s dot-files/zshrc .zshrc
+touch .zshrc-local
+# add localplugins=(tmux) to .zshrc-local to autostart tmux
+echo "localplugins=(tmux)" >> localplugins=(tmux)
+
 
 # useful command line things
 sudo apt-get install vim-nox aptitude ipython toilet
