@@ -19,7 +19,7 @@ git clone https:://github.com/zsh-users/zsh-syntax-highlighting.git
 cd 
 git clone https://github.com/tallus/dot-files.git
 sudo gem install lolcat
-sudo pip install thefuck
+sudo pip install pathlib thefuck
 
 Backup existing dot files
 Add symlinks 
