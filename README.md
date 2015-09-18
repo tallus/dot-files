@@ -16,9 +16,15 @@ sudo apt-get install git zsh python-pip python-virtualenv virtualenvwrapper ack-
 curl -L http://install.ohmyz.sh | sh
 cd ~/.oh-my-zsh/custom/plugins
 git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
+cd 
 git clone git://github.com/tallus/dot-files.git
 sudo gem install lolcat
 sudo pip install thefuck
+
+Backup existing dot files
+Add symlinks 
+
+i.e. ln -s .zshrc dot-files/zshrc
 
 # useful command line things
 sudo apt-get install vim-nox aptitude ipython toilet
