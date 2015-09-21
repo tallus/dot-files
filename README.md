@@ -15,10 +15,20 @@ return value info
 sudo apt-get install git zsh python-pip python-virtualenv virtualenvwrapper ack-grep
 curl -L http://install.ohmyz.sh | sh
 cd ~/.oh-my-zsh/custom/plugins
-git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
-git clone git://github.com/tallus/dot-files.git
+git clone https:://github.com/zsh-users/zsh-syntax-highlighting.git
+cd 
+git clone https://github.com/tallus/dot-files.git
 sudo gem install lolcat
-sudo pip install thefuck
+sudo pip install pathlib thefuck
+
+# Backup existing dot files
+# Add symlinks 
+# i.e. ln -s dot-files/zshrc .zshrc
+
+touch .zshrc-local
+# add localplugins=(tmux) to .zshrc-local to autostart tmux
+echo "localplugins=(tmux)" >> localplugins=(tmux)
+
 
 # useful command line things
 sudo apt-get install vim-nox aptitude ipython toilet
