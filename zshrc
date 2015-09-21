@@ -167,8 +167,8 @@ else
     source /usr/bin/virtualenvwrapper.sh
 fi
 
-alias mkvirtualenv-real='mkvirtualenv'
-alias mkvirtualenv='mkvirt'
+# alias mkvirtualenv-real='mkvirtualenv'
+# alias mkvirtualenv='mkvirt'
 
 ## source local
 if [  -e ~/.zshrc-local ]; then
