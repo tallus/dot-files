@@ -90,6 +90,16 @@ rcd(){
     cd -
     clear
 }
+
+# set up useful dev tools in virtualenv
+pydev(){
+    pip install ipython nose mock coverage
+    pip install flake8 frosted pep8 prospector pyflakes pylama pylint
+    pip install "ipython[notebook]"
+
+}
+
+
 # only if the command doesn't exist i.e. in ~/bin
 # alternatively add to zshrc-local to overide this
 if [ -z $commands[hello] ]; then
