@@ -16,18 +16,25 @@ sudo apt-get install git zsh python-pip python-virtualenv virtualenvwrapper ack-
 curl -L http://install.ohmyz.sh | sh
 cd ~/.oh-my-zsh/custom/plugins
 git clone https:://github.com/zsh-users/zsh-syntax-highlighting.git
-cd 
+cd
 git clone https://github.com/tallus/dot-files.git
 sudo gem install lolcat
 sudo pip install pathlib thefuck
 
 # Backup existing dot files
-# Add symlinks 
+# Add symlinks
 # i.e. ln -s dot-files/zshrc .zshrc
 
 touch .zshrc-local
 # add localplugins=(tmux) to .zshrc-local to autostart tmux
 echo "localplugins=(tmux)" >> localplugins=(tmux)
+
+
+# Vim stuff
+cd ~/dot-files/vim/bundle
+./vim-clone.sh
+
+This might break because some of this is in this repo
 
 
 # useful command line things
