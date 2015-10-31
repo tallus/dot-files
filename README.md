@@ -38,7 +38,7 @@ This might break because some of this is in this repo
 
 ## install powerline font
 cd .fonts
-wget https://github.com/powerline/fonts/blob/master/Inconsolata/Inconsolata%20for%20Powerline.otf
+wget https://github.com/powerline/fonts/raw/master/Inconsolata/Inconsolata%20for%20Powerline.otf
 fc-cache -vf ~/.fonts/
 
 set terminal emulator to use patched font
