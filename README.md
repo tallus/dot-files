@@ -36,6 +36,18 @@ cd ~/dot-files/vim/bundle
 
 This might break because some of this is in this repo
 
+## install powerline font
+cd .fonts
+wget https://github.com/powerline/fonts/blob/master/Inconsolata/Inconsolata%20for%20Powerline.otf
+fc-cache -vf ~/.fonts/
+
+set terminal emulator to use patched font
+
+see also:
+https://github.com/powerline/fonts
+https://powerline.readthedocs.org/en/latest/installation/linux.html#fonts-installation
+
+
 
 # useful command line things
 sudo apt-get install vim-nox aptitude ipython toilet

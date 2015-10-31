@@ -63,7 +63,15 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8', 'pylint', 'pep8', 'frosted']
 "prospector ,  'python', 'pylama']
 let g:syntastic_python_pylint_args = "--disable=F0401 --generated-members=objects"
-
+" for vim-airline
+let g:airline_powerline_fonts=1
+set laststatus=2
+"let g:airline_theme='jellybean'
+let g:airline_theme='understated'
+"let g:airline_theme='murmur'
+"let g:airline_theme='raven'
+"let g:airline_theme='silver'
+"let g:airline_theme='zenburn'
 " set cursor shape
 " N.B. Terminator at least overides this, gnome terminal doesn't
 " let you sent (no) blink
