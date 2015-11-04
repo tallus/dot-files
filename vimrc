@@ -60,9 +60,11 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+let g:syntastic_python_pylint_args = "--disable=F0401 --generated-members=objects"
+let g:syntastic_python_pylint_args = "--load-plugins pylint_django"
 let g:syntastic_python_checkers = ['flake8', 'pylint', 'pep8', 'frosted']
 "prospector ,  'python', 'pylama']
-let g:syntastic_python_pylint_args = "--disable=F0401 --generated-members=objects"
+
 " for vim-airline
 let g:airline_powerline_fonts=1
 set laststatus=2
