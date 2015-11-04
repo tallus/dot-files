@@ -37,6 +37,7 @@ cd ~/dot-files/vim/bundle
 This might break because some of this is in this repo
 
 ## install powerline font
+This is only needed for a local machine, not for machines you only ssh to
 cd .fonts
 wget https://github.com/powerline/fonts/raw/master/Inconsolata/Inconsolata%20for%20Powerline.otf
 fc-cache -vf ~/.fonts/
