@@ -25,7 +25,8 @@ hi Normal ctermbg=None
 " hi SpellBad ctermbg=darkblue " if using light colors on dark background
 
 " Set cursorline here to override values in colors theme
-set cursorline
+" disabled as by default as its slow
+" set cursorline
 "set spell bad to bold so we can see it on the current line
 hi Spellbad cterm=undercurl,bold
 " turn cursor line on/off when entering insert mode
@@ -202,3 +203,6 @@ endif
 
 
 set tags=~/.mytags
+if filereadable("~/.vimrc-local")
+    source .vimrc-local
+endif
