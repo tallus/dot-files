@@ -34,7 +34,7 @@ echo "localplugins=(tmux)" >> localplugins=(tmux)
 cd ~/dot-files/vim/bundle
 ./vim-clone.sh
 
-This might break because some of this is in this repo
+Install ExuberantCtags to make use of all the plugins
 
 ## install powerline font
 This is only needed for a local machine, not for machines you only ssh to
