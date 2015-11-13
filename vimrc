@@ -4,6 +4,10 @@ syntax enable
 set nocompatible
 set autoindent
 
+" makes screen redrawing/movement  faster
+set lazyredraw
+set ttyfast
+
 " Use 256 colours
 " probably unecessary if we have set things up right elsewhere
 set t_Co=256
@@ -25,8 +29,7 @@ hi Normal ctermbg=None
 " hi SpellBad ctermbg=darkblue " if using light colors on dark background
 
 " Set cursorline here to override values in colors theme
-" disabled as by default as its slow
-" set cursorline
+set cursorline
 "set spell bad to bold so we can see it on the current line
 hi Spellbad cterm=undercurl,bold
 " turn cursor line on/off when entering insert mode
