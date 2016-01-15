@@ -33,6 +33,7 @@ echo "localplugins=(tmux)" >> localplugins=(tmux)
 # Vim stuff
 cd ~/dot-files/vim/bundle
 ./vim-clone.sh
+(update these with vim-update.sh)
 
 Install ExuberantCtags to make use of all the plugins
 

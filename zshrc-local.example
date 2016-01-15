@@ -1,0 +1,18 @@
+hello(){
+echo "                               Welcome to"  | lolcat
+   figlet -f slant "    $HOST" | lolcat
+       weather_report
+}
+alias irc="ssh irssi@www.terra-incognito.net"
+source $HOME/.oh-my-zsh/plugins/colorize/colorize.plugin.zsh
+
+colorless(){
+    colorize $1 | less
+}
+
+alias ccat='colorize'
+alias cless='colorless'
+alias less='colorless'
+alias rless='/usr/bin/less'
+alias grubcp='sudo cp  /boot/grub/grub.cfg /media/paul/e49593ca-1c0c-430f-b2e0-2502de3ee18c/boot/grub/grub.cfg'
+alias netflix='google-chrome http://www.netflix.com'

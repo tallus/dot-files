@@ -1,2 +1,14 @@
-zshrc-local
+vim/bundle/vim-abolish/
+vim/bundle/coffeetags
+vim/bundle/jedi-vim
+vim/bundle/MatchTagAlways
+vim/bundle/syntastic
+vim/bundle/tagbar
+vim/bundle/vim-airline
+vim/bundle/vim-coffee-script
+vim/bundle/vim-eunuch
+vim/bundle/vim-json
+vim/bundle/vim-markdown
+vim/bundle/vim-python-pep8-indent
+vim/bundle/vim-troll-stopper
 *.bak
