@@ -97,12 +97,6 @@ let g:airline_theme='understated'
 "    " 6 -> solid vertical bar
 ""endif
 
-" for gnome-terminal
-au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape underline"
-au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-au VimEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-
 " set html to jinja since the latter also does the former
 au BufWinEnter,BufRead,BufNewFile *.html set filetype=jinja
 
