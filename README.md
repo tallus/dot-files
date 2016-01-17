@@ -8,7 +8,7 @@ Use .zshrc-local to add custom/local aliases and functions etc
 Also I use oh-my-zsh, the tallpaul.zsh-theme is for that.
 
 It's a custom minimalist zsh theme with git, python virtualenv  and command
-return value info
+return value info. This file is Ubuntu specific but you can also do (most of) this on OS X etc with a little tweaking.(For OS X you will need to install pip and virtualenv(wrapper).
 
 ### Set up
 ````
@@ -23,7 +23,13 @@ sudo pip install pathlib thefuck
 
 # Backup existing dot files
 # Add symlinks
-# i.e. ln -s dot-files/zshrc .zshrc
+ln -s dot-files/zshrc .zshrc
+ln -s dot-files/zsh .zsh
+ln -s dot-files/vimrc .vimrc
+ln -s dot-files/vimrc .vim
+
+# copy over zsh theme
+cp dot-files/tallpaul.theme .oh-my-zsh/themes
 
 touch .zshrc-local
 # add localplugins=(tmux) to .zshrc-local to autostart tmux
@@ -33,9 +39,9 @@ echo "localplugins=(tmux)" >> localplugins=(tmux)
 # Vim stuff
 cd ~/dot-files/vim/bundle
 ./vim-clone.sh
-(update these with vim-update.sh)
+# (update these with vim-update.sh)
 
-Install ExuberantCtags to make use of all the plugins
+i# Install ExuberantCtags to make use of all the plugins
 
 ## install powerline font
 This is only needed for a local machine, not for machines you only ssh to
@@ -43,11 +49,11 @@ cd .fonts
 wget https://github.com/powerline/fonts/raw/master/Inconsolata/Inconsolata%20for%20Powerline.otf
 fc-cache -vf ~/.fonts/
 
-set terminal emulator to use patched font
+# set terminal emulator to use patched font
 
-see also:
-https://github.com/powerline/fonts
-https://powerline.readthedocs.org/en/latest/installation/linux.html#fonts-installation
+# see also:
+# https://github.com/powerline/fonts
+# https://powerline.readthedocs.org/en/latest/installation/linux.html#fonts-installation
 
 
 

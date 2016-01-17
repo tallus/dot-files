@@ -172,9 +172,14 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
 if [ -e /etc/bash_completion.d/virtualenvwrapper ] ; then
     export VIRTUALENVWRAPPER_SCRIPT=/etc/bash_completion.d/virtualenvwrapper
     source /etc/bash_completion.d/virtualenvwrapper
-else
+elif [ -e /usr/bin/virtualenvwrapper.sh ]; then
     export VIRTUALENVWRAPPER_SCRIPT=/usr/bin/virtualenvwrapper.sh
     source /usr/bin/virtualenvwrapper.sh
+elif [ -e /usr/local/bin/virtualenvwrapper.sh ]; then
+    export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
+    source /usr/local/bin/virtualenvwrapper.sh
+else
+    echo "No virtualenvwrapper :("
 fi
 
 # alias mkvirtualenv-real='mkvirtualenv'
