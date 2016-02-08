@@ -5,6 +5,7 @@ vim/bundle/MatchTagAlways
 vim/bundle/syntastic
 vim/bundle/tagbar
 vim/bundle/vim-airline
+vim/bundle/vim-airline-themes
 vim/bundle/vim-coffee-script
 vim/bundle/vim-eunuch
 vim/bundle/vim-json

@@ -70,8 +70,10 @@ bye(){
             touch $HOME/.bye
         fi
         clear
-        echo "kernel panic:"
-        $HOME/bin/bofh
+        if [-e $HOME/bin/bofh]; then
+            echo "kernel panic:"
+            $HOME/bin/bofh
+        fi
         if [ ! -z  $commands[figlet] ] && [ ! -z  $commands[lolcat] ];then
             figlet -f fraktur "bye!"  | lolcat
         fi
@@ -169,15 +171,27 @@ export PIP_REQUIRE_VIRTUALENV=true
 export PIP_RESPECT_VIRTUALENV=true
 export VIRTUALENV_USE_DISTRIBUTE=true
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
-if [ -e /etc/bash_completion.d/virtualenvwrapper ] ; then
-    export VIRTUALENVWRAPPER_SCRIPT=/etc/bash_completion.d/virtualenvwrapper
-    source /etc/bash_completion.d/virtualenvwrapper
-elif [ -e /usr/bin/virtualenvwrapper.sh ]; then
-    export VIRTUALENVWRAPPER_SCRIPT=/usr/bin/virtualenvwrapper.sh
-    source /usr/bin/virtualenvwrapper.sh
-elif [ -e /usr/local/bin/virtualenvwrapper.sh ]; then
-    export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
-    source /usr/local/bin/virtualenvwrapper.sh
+if [ -f /etc/bash_completion.d/virtualenvwrapper ] ; then
+    function {
+        setopt local_options
+        unsetopt equals
+        export VIRTUALENVWRAPPER_SCRIPT=/etc/bash_completion.d/virtualenvwrapper
+        source /etc/bash_completion.d/virtualenvwrapper
+    }
+elif [ -f /usr/bin/virtualenvwrapper.sh ]; then
+    function {
+        setopt local_options
+        unsetopt equals
+        export VIRTUALENVWRAPPER_SCRIPT=/usr/bin/virtualenvwrapper.sh
+        source /usr/bin/virtualenvwrapper.sh
+    }
+elif [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    function {
+        setopt local_options
+        unsetopt equals
+        export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
+        source /usr/local/bin/virtualenvwrapper.sh
+    }
 else
     echo "No virtualenvwrapper :("
 fi
