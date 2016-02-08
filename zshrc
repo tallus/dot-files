@@ -70,7 +70,7 @@ bye(){
             touch $HOME/.bye
         fi
         clear
-        if [-e $HOME/bin/bofh]; then
+        if [ -f $HOME/bin/bofh ]; then
             echo "kernel panic:"
             $HOME/bin/bofh
         fi
@@ -114,7 +114,7 @@ if [ -z $commands[hello] ]; then
             figlet -f slant  "    $HOST"
         else
             echo "Welcome to $HOST"
-        fi
+        if
     }
 fi
 # Aliases
