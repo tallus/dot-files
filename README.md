@@ -12,7 +12,7 @@ return value info. This file is Ubuntu specific but you can also do (most of) th
 
 ### Set up
 ````
-sudo apt-get install git zsh python-pip python-virtualenv virtualenvwrapper ack-grep
+sudo apt-get install git zsh python-pip python-virtualenv python -dev virtualenvwrapper ack-grep
 curl -L http://install.ohmyz.sh | sh
 cd ~/.oh-my-zsh/custom/plugins
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
@@ -29,11 +29,11 @@ ln -s dot-files/vimrc .vimrc
 ln -s dot-files/vimrc .vim
 
 # copy over zsh theme
-cp dot-files/tallpaul.theme .oh-my-zsh/themes
+cp dot-files/tallpaul.zsh-theme .oh-my-zsh/themes
 
 touch .zshrc-local
 # add localplugins=(tmux) to .zshrc-local to autostart tmux
-echo "localplugins=(tmux)" >> localplugins=(tmux)
+echo "localplugins=(tmux)" >> .zshrc-local
 
 
 # Vim stuff
