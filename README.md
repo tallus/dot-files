@@ -13,9 +13,13 @@ return value info. This file is Ubuntu specific but you can also do (most of) th
 ### Set up
 ````
 sudo apt-get install git zsh python-pip python-virtualenv python -dev virtualenvwrapper ack-grep tmux
-# optionally 
+# optionally
 sudo apt-get install toilet
-# if you install this it doesn't install all fonts required. 
+# if you install this it doesn't install  a very good font selection
+# and you probably want to install some more (at least fraktur and slant)
+# if you are me they are on gatheringstorms
+# if you are not try: https://github.com/cmatsuoka/figlet-fonts
+# or http://www.figlet.org/fontdb.cgi
 curl -L http://install.ohmyz.sh | sh
 cd ~/.oh-my-zsh/custom/plugins
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git

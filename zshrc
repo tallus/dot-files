@@ -75,7 +75,11 @@ bye(){
             $HOME/bin/bofh
         fi
         if [ ! -z  $commands[figlet] ] && [ ! -z  $commands[lolcat] ];then
-            figlet -f fraktur "bye!"  | lolcat
+            if [ -f /usr/share/figlet/fraktur.flf ]; then
+                figlet -f fraktur "bye!"  | lolcat
+            else
+                figlet "bye!"  | lolcat
+            fi
         fi
         sleep 1.2s
     fi
@@ -108,10 +112,18 @@ if [ -z $commands[hello] ]; then
     hello(){
         if [ ! -z  $commands[figlet] ] && [ ! -z  $commands[lolcat] ];then
             echo "               Welcome to" | lolcat;
-            figlet -f slant  "    $HOST" | lolcat
+            if [ -f /usr/share/figlet/slant.flf ]; then
+                figlet -f slant  "    $HOST" | lolcat
+            else
+                figlet "    $HOST" | lolcat
+            fi
         elif [ ! -z  $commands[figlet] ]; then
-            echo "               Welcome to" | lolcat;
-            figlet -f slant  "    $HOST"
+            echo "               Welcome to";
+            if [ -f /usr/share/figlet/slant.flf ]; then
+                figlet -f slant  "    $HOST"
+            else
+                figlet -f "    $HOST"
+            fi
         else
             echo "Welcome to $HOST"
         fi
