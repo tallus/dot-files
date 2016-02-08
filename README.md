@@ -15,7 +15,7 @@ return value info. This file is Ubuntu specific but you can also do (most of) th
 sudo apt-get install git zsh python-pip python-virtualenv virtualenvwrapper ack-grep
 curl -L http://install.ohmyz.sh | sh
 cd ~/.oh-my-zsh/custom/plugins
-git clone https:://github.com/zsh-users/zsh-syntax-highlighting.git
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 cd
 git clone https://github.com/tallus/dot-files.git
 sudo gem install lolcat
