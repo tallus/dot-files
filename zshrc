@@ -114,7 +114,7 @@ if [ -z $commands[hello] ]; then
             figlet -f slant  "    $HOST"
         else
             echo "Welcome to $HOST"
-        if
+        fi
     }
 fi
 # Aliases
