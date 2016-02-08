@@ -41,7 +41,7 @@ cd ~/dot-files/vim/bundle
 ./vim-clone.sh
 # (update these with vim-update.sh)
 
-i# Install ExuberantCtags to make use of all the plugins
+# Install ExuberantCtags to make use of all the plugins
 
 ## install powerline font
 This is only needed for a local machine, not for machines you only ssh to
