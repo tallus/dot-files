@@ -12,7 +12,10 @@ return value info. This file is Ubuntu specific but you can also do (most of) th
 
 ### Set up
 ````
-sudo apt-get install git zsh python-pip python-virtualenv python -dev virtualenvwrapper ack-grep tmxu
+sudo apt-get install git zsh python-pip python-virtualenv python -dev virtualenvwrapper ack-grep tmux
+# optionally 
+sudo apt-get install toilet
+# if you install this it doesn't install all fonts required. 
 curl -L http://install.ohmyz.sh | sh
 cd ~/.oh-my-zsh/custom/plugins
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
