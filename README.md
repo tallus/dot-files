@@ -12,7 +12,7 @@ return value info. This file is Ubuntu specific but you can also do (most of) th
 
 ### Set up
 ````
-sudo apt-get install git zsh python-pip python-virtualenv python -dev virtualenvwrapper ack-grep
+sudo apt-get install git zsh python-pip python-virtualenv python -dev virtualenvwrapper ack-grep tmxu
 curl -L http://install.ohmyz.sh | sh
 cd ~/.oh-my-zsh/custom/plugins
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
@@ -26,7 +26,7 @@ sudo pip install pathlib thefuck
 ln -s dot-files/zshrc .zshrc
 ln -s dot-files/zsh .zsh
 ln -s dot-files/vimrc .vimrc
-ln -s dot-files/vimrc .vim
+ln -s dot-files/vim ./.vim
 
 # copy over zsh theme
 cp dot-files/tallpaul.zsh-theme .oh-my-zsh/themes
