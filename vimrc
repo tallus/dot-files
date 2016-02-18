@@ -146,8 +146,11 @@ map <F7> <ESC>:set cursorline!<CR>
 "for tagbar
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_autoclose=1
-" Press F4 to toggle highlighting on/off, and show current value.
+" Press F9 to toggle highlighting on/off, and show current value.
 :noremap <F9> :set hlsearch! hlsearch?<CR>
+
+" Press F10 to close location list
+:noremap <F10> :lcl<CR>
 
 " Press Space to turn off highlighting and clear any message already displayed.
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
