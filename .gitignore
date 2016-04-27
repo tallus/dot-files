@@ -12,4 +12,6 @@ vim/bundle/vim-json
 vim/bundle/vim-markdown
 vim/bundle/vim-python-pep8-indent
 vim/bundle/vim-troll-stopper
+vim/bundle/rainbow_parentheses.vim
 *.bak
+vim/.netrwhist

@@ -97,6 +97,27 @@ let g:airline_theme='understated'
 "    " 6 -> solid vertical bar
 ""endif
 
+" Rainbow Parens
+let g:bold_parentheses = 0  "off
+let g:rbpt_colorpairs = [
+    \ ['136',       'RoyalBlue3'],
+    \ ['036',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['124',   'firebrick3'],
+    \ ['068',    'RoyalBlue3'],
+    \ ['202',     'SeaGreen3'],
+    \ ['248', 'DarkOrchid3'],
+    \ ['052',       'firebrick3'],
+    \ ['132',        'RoyalBlue3'],
+    \ ['136',       'SeaGreen3'],
+    \ ['067', 'DarkOrchid3'],
+    \ ['087',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['lightgrey',         'firebrick3'],
+    \ ]
+
 " set html to jinja since the latter also does the former
 "au BufWinEnter,BufRead,BufNewFile *.html set filetype=jinja
 
@@ -135,6 +156,13 @@ function! UnQuote()
   set iskeyword-=_
 endfunction
 
+function! RBParens()
+    RainbowParenthesesToggle
+    RainbowParenthesesLoadSquare
+    RainbowParenthesesLoadBraces
+endfunction
+
+
 " type table,,, to get <table></table> etc automatically close a tag
 imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>kA
 map <F2>:call SwitchBackground()<CR>
@@ -151,6 +179,9 @@ let g:tagbar_autoclose=1
 
 " Press F10 to close location list
 :noremap <F10> :lcl<CR>
+
+" Press F12 to toggle rainbow params
+map <F12> <ESC>:call RBParens()<CR>
 
 " Press Space to turn off highlighting and clear any message already displayed.
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
