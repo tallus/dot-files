@@ -63,7 +63,10 @@ fc-cache -vf ~/.fonts/
 # https://github.com/powerline/fonts
 # https://powerline.readthedocs.org/en/latest/installation/linux.html#fonts-installation
 
-
+# fix virtualenv wrapper
+# edit /etc/bash_completion.d/virtualenvwrapper
+# set use_full to yes
+# chage the if statement to use double square brackets
 
 # useful command line things
 sudo apt-get install vim-nox aptitude ipython toilet
