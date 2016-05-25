@@ -73,6 +73,8 @@ sudo apt-get install vim-nox aptitude ipython toilet
 # Set a useful editor/not Nano
 sudo  update-alternatives --config editor
 #useful  GUI things
+# terminator is best installed from the ppa
+sudo add-apt-repository ppa:gnome-terminator && sudo apt-get update
 sudo apt-get install terminator chromium-browser unity-tweak-tool gthumb inkscape gimp exaile
 #useful server stuff
 sudo apt-get install postgresql-9.3 postgresql-client-9.3 ipython python-psycopg2 nginx openssh-server ansible
