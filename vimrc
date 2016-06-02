@@ -46,6 +46,7 @@ filetype indent plugin on
 filetype plugin on
 filetype indent on
 " set omnifunc=syntaxcomplete#Complete
+
 " turn off docstring pop up in jedi-vim
 autocmd FileType python setlocal completeopt-=preview
 " Jump to the last position when reopening a file
@@ -53,12 +54,18 @@ autocmd FileType python setlocal completeopt-=preview
    au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g'\"" | endif
 endif
-" and auto arguments
+
+" remove trailing whitespace on save in selected filetypes
+autocmd FileType py,css,scss,js,html autocmd BufWritePre <buffer> :%s/\s\+$//e
+" end auto arguments
+
+
 let g:jedi#show_call_signatures=0
 "set underscore as word boundary
 set iskeyword-=_
 " so we can see the leader key.
 set showcmd
+
 "Syntastic checkers
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
