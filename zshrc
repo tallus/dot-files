@@ -62,7 +62,9 @@ export  EDITOR=/usr/bin/vim
 
 # functions
 
-bye(){
+# built in hook called on exit
+#  add zshexit to zshrc-local to overide this
+zshexit(){
     if [ ${plugins[(i)tmux]} -le ${#plugins} ] && [ -e $HOME/.bye ]; then
             rm $HOME/.bye
     else
@@ -140,7 +142,6 @@ alias mv='nocorrect mv'       # no spelling correction on mv
 alias cp='nocorrect cp'       # no spelling correction on cp
 alias mkdir='nocorrect mkdir' # no spelling correction on mkdir
 alias compile='gcc -std=c99 -Wall -Wextra -Werror -o $@'
-alias exit=bye
 alias duc='du -ch --max-depth=1'
 alias duc2='du -ch --max-depth=2'
 alias duc3='du -ch --max-depth=3'
