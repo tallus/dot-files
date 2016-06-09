@@ -152,6 +152,7 @@ alias vi=vim
 alias view="vim -R"
 alias tmux="tmux -2"
 alias pack="ack --python"
+alias ack='ack-grep'
 # alias thefuck ->fuck) if it's there
 if [ ! -z  $commands[thefuck] ]; then
     eval "$(thefuck --alias)"
