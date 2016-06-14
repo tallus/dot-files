@@ -151,7 +151,9 @@ alias mkrb="$HOME/bin/mkscript ruby"
 alias vi=vim
 alias view="vim -R"
 alias tmux="tmux -2"
-alias pack="ack --python"
+alias pack="ack-grep --python"
+alias jack="ack-grep --js"
+alias sack="ack-grep --scss"
 alias ack='ack-grep'
 # alias thefuck ->fuck) if it's there
 if [ ! -z  $commands[thefuck] ]; then

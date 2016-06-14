@@ -35,6 +35,7 @@ ln -s dot-files/zsh .zsh
 ln -s dot-files/vimrc .vimrc
 ln -s dot-files/vim ./.vim
 ln -s dot-files/tmux.conf .tmux.conf
+ln -s dot-files/ackrc .ackrc
 
 # copy over zsh theme
 cp dot-files/tallpaul.zsh-theme .oh-my-zsh/themes
