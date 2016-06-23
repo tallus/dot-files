@@ -239,6 +239,9 @@ if has("autocmd")
     \| exe "normal! g'\"" | endif
 endif
 
+" add a space to comments
+let g:NERDSpaceDelims = 1
+
 
 set tags=~/.mytags
 if filereadable(glob("~/.vimrc-local"))
