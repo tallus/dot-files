@@ -37,6 +37,12 @@ hi Spellbad cterm=undercurl,bold
 au InsertEnter * set nocursorline
 au InsertLeave * set cursorline
 
+" fix for incorrect highlighting casued by long doc strings
+syn sync fromstart
+" replace with next line if thing get to slow
+"syn sync minlines=250
+
+
 " for python
 set tabstop=4
 set expandtab
