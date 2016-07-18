@@ -37,12 +37,6 @@ hi Spellbad cterm=undercurl,bold
 au InsertEnter * set nocursorline
 au InsertLeave * set cursorline
 
-" fix for incorrect highlighting casued by long doc strings
-syn sync fromstart
-" replace with next line if thing get to slow
-"syn sync minlines=250
-
-
 " for python
 set tabstop=4
 set expandtab
@@ -248,7 +242,12 @@ endif
 " add a space to comments
 let g:NERDSpaceDelims = 1
 
-
+" fix for incorrect highlighting casued by long doc strings
+" check from start of file to determine syntax highlighting
+autocmd BufEnter * :syntax sync fromstart
+" alternatively set minimum no of lines backwards to check
+" replace with next line if thing get to slow, count = no of lines to check
+" let c_minlines=200
 set tags=~/.mytags
 if filereadable(glob("~/.vimrc-local"))
     source ~/.vimrc-local
