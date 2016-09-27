@@ -3,6 +3,9 @@ execute pathogen#infect()
 syntax enable
 set nocompatible
 set autoindent
+" Mouse Mode
+set ttymouse=xterm2
+set mouse=a
 
 " makes screen redrawing/movement  faster
 set lazyredraw
