@@ -215,14 +215,6 @@ fi
 # alias mkvirtualenv-real='mkvirtualenv'
 # alias mkvirtualenv='mkvirt'
 
-## source local
-if [  -e ~/.zshrc-local ]; then
-    source ~/.zshrc-local
-fi
-
-## xterm fun!
-hello
-
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -314,6 +306,14 @@ bindkey '\e.' insert-last-word
 insert_sudo () { zle beginning-of-line; zle -U "sudo " }
 zle -N insert-sudo insert_sudo
 bindkey "^[s" insert-sudo
+
+## source local
+if [  -e ~/.zshrc-local ]; then
+    source ~/.zshrc-local
+fi
+
+## xterm fun!
+hello
 
 
 # End of lines configured by zsh-newuser-install
