@@ -76,7 +76,7 @@ let g:syntastic_loc_list_height = 5
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_pylint_args = "--disable=F0401 --generated-members=objects"
-let g:syntastic_python_pylint_args = "--load-plugins pylint_django"
+" let g:syntastic_python_pylint_args = "--load-plugins pylint_django"
 let g:syntastic_python_checkers = ['flake8', 'pylint', 'pep8', 'frosted']
 "prospector ,  'python', 'pylama']
 
@@ -189,10 +189,14 @@ let g:tagbar_autoclose=1
 :noremap <F9> :set hlsearch! hlsearch?<CR>
 
 " Press F10 to close location list
-:noremap <F10> :lcl<CR>
+":noremap <F10> :lcl<CR>
 
-" Press F12 to toggle rainbow params
-map <F12> <ESC>:call RBParens()<CR>
+" Press F10 to close location list and clear syntastic markers
+:noremap <F10> :SyntasticReset<CR>
+
+" Press Ctrl+F12 to toggle rainbow params
+set <F12>=[24;5~
+:noremap <F12> <ESC>:call RBParens()<CR>
 
 " Press Space to turn off highlighting and clear any message already displayed.
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
