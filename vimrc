@@ -50,6 +50,11 @@ filetype plugin on
 filetype indent on
 " set omnifunc=syntaxcomplete#Complete
 
+"set cwd/pwd to directory of file being edited, not directory vim started in
+"enables .pylintrc in file dir to be used automatically
+"may break some plugins, but doesn't appear to.
+set autochdir
+
 " turn off docstring pop up in jedi-vim
 autocmd FileType python setlocal completeopt-=preview
 " Jump to the last position when reopening a file
