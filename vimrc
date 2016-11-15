@@ -85,6 +85,7 @@ let g:syntastic_python_pylint_args = "--disable=F0401 --generated-members=object
 let g:syntastic_python_checkers = ['flake8', 'pylint']
 " frosted is prefereable but flake8 has pyflakes and pep8
 " 'frosted', 'pep8',  prospector ,  'python', 'pylama']
+let g:syntastic_aggregate_errors = 1
 
 " for vim-airline
 let g:airline_powerline_fonts=1
