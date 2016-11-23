@@ -189,9 +189,7 @@ map <F4> <ESC>:set spell!<CR>
 map <F5> <ESC>:filetype detect<CR>
 map <F6> <ESC>:set paste!<CR>
 map <F7> <ESC>:set cursorline!<CR>
-"for tagbar
-nmap <F8> :TagbarToggle<CR>
-let g:tagbar_autoclose=1
+" <F8> for .vimrc-local
 " Press F9 to toggle highlighting on/off, and show current value.
 :noremap <F9> :set hlsearch! hlsearch?<CR>
 
