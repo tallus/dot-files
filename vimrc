@@ -255,6 +255,10 @@ endif
 " add a space to comments
 let g:NERDSpaceDelims = 1
 
+" triple quote balance auto-insertion
+au FileType python let b:delimitMate_nesting_quotes = ['"']
+
+
 " fix for incorrect highlighting casued by long doc strings
 " check from start of file to determine syntax highlighting
 autocmd BufEnter * :syntax sync fromstart
