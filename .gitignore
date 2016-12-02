@@ -14,5 +14,11 @@ vim/bundle/vim-python-pep8-indent
 vim/bundle/vim-troll-stopper
 vim/bundle/vim-fireplace
 vim/bundle/rainbow_parentheses.vim
-*.bak
+vim/bundle/vim-pydocstring
+vim/bundle/vim-unimpaired
+vim/doc/tags
 vim/.netrwhist
+vim/spell/en.utf-8.add.spl
+vim/spell/en.utf-8.add
+*.bak
+*.swp
