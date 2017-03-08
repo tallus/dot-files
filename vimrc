@@ -82,7 +82,7 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_pylint_args = "--disable=F0401 --generated-members=objects"
 " let g:syntastic_python_pylint_args = "--load-plugins pylint_django"
-let g:syntastic_python_checkers = ['flake8', 'pylint']
+let g:syntastic_python_checkers = ['pylint', 'flake8']
 " frosted is prefereable but flake8 has pyflakes and pep8
 " 'frosted', 'pep8',  prospector ,  'python', 'pylama']
 let g:syntastic_aggregate_errors = 1
@@ -180,6 +180,13 @@ function! RBParens()
     RainbowParenthesesLoadBraces
 endfunction
 
+function! Descore()
+        if &iskeyword =~ '_'
+            setlocal isk-=_
+        else
+            setlocal isk+=_
+        endif
+endfunction
 
 " type table,,, to get <table></table> etc automatically close a tag
 imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>kA
@@ -206,6 +213,8 @@ set <F12>=[24;5~
 " Press Space to turn off highlighting and clear any message already displayed.
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
+"Press _ in normal mode to toggle _ as marking a word boundary
+nmap _ <ESC>:call Descore()<CR>
 " CamelCase Movement
 
 " Use one of the following to define the camel characters.
