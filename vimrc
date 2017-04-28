@@ -195,7 +195,7 @@ imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>kA
 map <F2>:call SwitchBackground()<CR>
 map <F3> <ESC>:set invnumber<CR>
 " \ f3 for relnumber
-noremap <leader><F3> <ESC>:set rnu<CR>
+noremap <leader><F3> <ESC>:exec &nu==&rnu? "se nu!" : "se rnu!"<CR>
 map <F4> <ESC>:set spell!<CR>
 map <F5> <ESC>:filetype detect<CR>
 map <F6> <ESC>:set paste!<CR>
