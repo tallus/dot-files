@@ -4,8 +4,11 @@ syntax enable
 set nocompatible
 set autoindent
 " Mouse Mode
-set ttymouse=xterm2
+if !has('nvim')
+    set ttymouse=xterm2
+endif
 set mouse=a
+set guicursor=
 
 " makes screen redrawing/movement  faster
 set lazyredraw
@@ -86,7 +89,6 @@ let g:syntastic_python_checkers = ['pylint', 'flake8']
 " frosted is prefereable but flake8 has pyflakes and pep8
 " 'frosted', 'pep8',  prospector ,  'python', 'pylama']
 let g:syntastic_aggregate_errors = 1
-
 " for vim-airline
 let g:airline_powerline_fonts=1
 set laststatus=2
@@ -192,6 +194,8 @@ endfunction
 imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>kA
 map <F2>:call SwitchBackground()<CR>
 map <F3> <ESC>:set invnumber<CR>
+" \ f3 for relnumber
+noremap <leader><F3> <ESC>:set rnu<CR>
 map <F4> <ESC>:set spell!<CR>
 map <F5> <ESC>:filetype detect<CR>
 map <F6> <ESC>:set paste!<CR>
@@ -275,6 +279,10 @@ autocmd BufEnter * :syntax sync fromstart
 " replace with next line if thing get to slow, count = no of lines to check
 " let c_minlines=200
 set tags=~/.mytags
+
+" neovim
+set guicursor=
+
 if filereadable(glob("~/.vimrc-local"))
     source ~/.vimrc-local
 endif
