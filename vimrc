@@ -27,6 +27,8 @@ set t_Co=256
 set background=light   " default
 colors peaksea
 hi Normal ctermbg=None
+"light grey for color columns
+hi ColourColumn ctermbg=252
 "colorscheme solarized
 "for transparent background
 "let g:zenburn_transparent = 1
@@ -155,6 +157,15 @@ function! SwitchBackground()
         hi NonText ctermfg=White ctermbg=Black
     endif
 endfunction
+
+"set colour columns every 4 columns
+function! HiColorColumn()
+    set cc=5,9,13,17,21,25,29,33,37,41,45,49,53,57,61,65,69,73,77
+    hi ColorColumn ctermbg=252
+endfunction
+command HCC call HiColorColumn()
+" turn off colour columns
+command NCC set cc=
 
 " Quote a word consisting of letters from iskeyword.
 nnoremap <silent> qw :call Quote('"')<CR>
