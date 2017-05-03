@@ -9,7 +9,7 @@ if !has('nvim')
 endif
 set mouse=a
 set guicursor=
-
+set term=xterm-256color
 " makes screen redrawing/movement  faster
 set lazyredraw
 set ttyfast
