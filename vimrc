@@ -6,10 +6,13 @@ set autoindent
 " Mouse Mode
 if !has('nvim')
     set ttymouse=xterm2
+    set term=xterm-256color
+endif
+if has('nvim')
+    let g:jedi#force_py_version = 3
 endif
 set mouse=a
 set guicursor=
-set term=xterm-256color
 " makes screen redrawing/movement  faster
 set lazyredraw
 set ttyfast
