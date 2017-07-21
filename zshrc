@@ -146,7 +146,6 @@ alias duc='du -ch --max-depth=1'
 alias duc2='du -ch --max-depth=2'
 alias duc3='du -ch --max-depth=3'
 alias mkbash="$HOME/bin/mkscript bash"
-alias mkpy="$HOME/bin/mkscript python"
 alias mkrb="$HOME/bin/mkscript ruby"
 alias vi=vim
 alias view="vim -R"
