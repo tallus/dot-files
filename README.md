@@ -40,9 +40,12 @@ ln -s dot-files/ackrc .ackrc
 # copy over zsh theme
 cp dot-files/tallpaul.zsh-theme .oh-my-zsh/themes
 
+# anything in here will override this file and oh-my-zsh
 touch .zshrc-local
-# add localplugins=(tmux) to .zshrc-local to autostart tmux
-echo "localplugins=(tmux)" >> .zshrc-local
+# sourced before oh-my-zsh
+touch .zshrc-plugins
+# add localplugins=(tmux) to .zshrc-plugins to autostart tmux
+echo "localplugins=(tmux)" >> .zshrc-plugins
 
 
 # Vim stuff
@@ -77,8 +80,6 @@ sudo  update-alternatives --config editor
 # terminator is best installed from the ppa
 sudo add-apt-repository ppa:gnome-terminator && sudo apt-get update
 sudo apt-get install terminator chromium-browser unity-tweak-tool gthumb inkscape gimp exaile
-#useful server stuff
-sudo apt-get install postgresql-9.3 postgresql-client-9.3 ipython python-psycopg2 nginx openssh-server ansible
 # make things look pretty
 sudo add-apt-repository ppa:tiheum/equinox
 sudo add-apt-repository ppa:webupd8team/themes

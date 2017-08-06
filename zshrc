@@ -214,6 +214,10 @@ fi
 # alias mkvirtualenv-real='mkvirtualenv'
 # alias mkvirtualenv='mkvirt'
 
+## source local plugins
+if [  -e ~/.zshrc-plugins ]; then
+    source ~/.zshrc-plugins
+fi
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
