@@ -3,6 +3,8 @@ execute pathogen#infect()
 syntax enable
 set nocompatible
 set autoindent
+set expandtab
+set fileformat=unix
 " Mouse Mode
 if !has('nvim')
     set ttymouse=xterm2
@@ -16,6 +18,19 @@ set guicursor=
 " makes screen redrawing/movement  faster
 set lazyredraw
 set ttyfast
+
+" for python
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+
+filetype indent plugin on
+filetype plugin on
+filetype indent on
+" set omnifunc=syntaxcomplete#Complete
+
+" set html to jinja since the latter also does the former
+"au BufWinEnter,BufRead,BufNewFile *.html set filetype=jinja
 
 " Use 256 colours
 " probably unecessary if we have set things up right elsewhere
@@ -48,15 +63,6 @@ hi Spellbad cterm=undercurl,bold
 au InsertEnter * set nocursorline
 au InsertLeave * set cursorline
 
-" for python
-set tabstop=4
-set expandtab
-set softtabstop=4
-set shiftwidth=4
-filetype indent plugin on
-filetype plugin on
-filetype indent on
-" set omnifunc=syntaxcomplete#Complete
 
 "set cwd/pwd to directory of file being edited, not directory vim started in
 "enables .pylintrc in file dir to be used automatically
@@ -65,6 +71,10 @@ set autochdir
 
 " turn off docstring pop up in jedi-vim
 autocmd FileType python setlocal completeopt-=preview
+" show function signature at botom of screen. Requires no show mode.
+let g:jedi#show_call_signatures = "2"
+set noshowmode
+
 " Jump to the last position when reopening a file
  if has("autocmd")
    au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -76,7 +86,6 @@ autocmd FileType py,css,scss,js,html autocmd BufWritePre <buffer> :%s/\s\+$//e
 " end auto arguments
 
 
-let g:jedi#show_call_signatures=0
 "set underscore as word boundary
 set iskeyword-=_
 " so we can see the leader key.
@@ -143,8 +152,6 @@ let g:rbpt_colorpairs = [
     \ ['lightgrey',         'firebrick3'],
     \ ]
 
-" set html to jinja since the latter also does the former
-"au BufWinEnter,BufRead,BufNewFile *.html set filetype=jinja
 
 " Switch to dark background
 function! SwitchBackground()
