@@ -5,6 +5,8 @@ set nocompatible
 set autoindent
 set expandtab
 set fileformat=unix
+set encoding=utf-8
+
 " Mouse Mode
 if !has('nvim')
     set ttymouse=xterm2
