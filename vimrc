@@ -34,6 +34,13 @@ filetype indent on
 " set html to jinja since the latter also does the former
 "au BufWinEnter,BufRead,BufNewFile *.html set filetype=jinja
 
+" enable github flavored markdown
+augroup markdown
+    au!
+    au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+augroup END
+
+
 " Use 256 colours
 " probably unecessary if we have set things up right elsewhere
 set t_Co=256
