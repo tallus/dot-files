@@ -286,7 +286,7 @@ let g:tagbar_type_mkd = {
 let g:vim_markdown_folding_disabled=1
 
 "better git commits
-autocmd Filetype gitcommit setlocal spell textwidth=72
+autocmd Filetype gitcommit setlocal spell textwidth=72 tabstop=2 softtabstop=2 shiftwidth=2
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file

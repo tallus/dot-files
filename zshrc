@@ -150,10 +150,12 @@ alias mkrb="$HOME/bin/mkscript ruby"
 alias vi=vim
 alias view="vim -R"
 alias tmux="tmux -2"
-alias pack="ack-grep --python"
-alias jack="ack-grep --js"
-alias sack="ack-grep --scss"
-alias ack='ack-grep'
+if [ $(uname) != 'Darwin' ]; then
+    alias ack="ack-grep"
+fi
+alias pack="ack --python"
+alias jack="ack --js"
+alias sack="ack --scss"
 # alias thefuck ->fuck) if it's there
 if [ ! -z  $commands[thefuck] ]; then
     eval "$(thefuck --alias)"
@@ -334,4 +336,3 @@ hello
 #fi
 #PATH=$PATH:/home/pmunday/web-serpng/code/serpng/tools/bin
 #export TERM=screen-256color
-
