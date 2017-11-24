@@ -108,7 +108,7 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_pylint_args = "--disable=F0401 --generated-members=objects"
 " let g:syntastic_python_pylint_args = "--load-plugins pylint_django"
-let g:syntastic_python_checkers = ['pylint', 'flake8']
+let g:syntastic_python_checkers = ['flake8', 'pylint']
 " frosted is prefereable but flake8 has pyflakes and pep8
 " 'frosted', 'pep8',  prospector ,  'python', 'pylama']
 let g:syntastic_aggregate_errors = 1
