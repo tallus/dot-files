@@ -7,6 +7,10 @@ set expandtab
 set fileformat=unix
 set encoding=utf-8
 
+" better tab completion for files
+set wildmode=longest,list,full
+
+
 " Mouse Mode
 if !has('nvim')
     set ttymouse=xterm2

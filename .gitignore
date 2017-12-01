@@ -16,6 +16,9 @@ vim/bundle/vim-fireplace
 vim/bundle/rainbow_parentheses.vim
 vim/bundle/vim-pydocstring
 vim/bundle/vim-unimpaired
+vim/bundle/vim-clojure-static
+vim/bundle/vim-flavored-markdown
+vim/bundle/vim-surround
 vim/doc/tags
 vim/.netrwhist
 vim/spell/en.utf-8.add.spl
