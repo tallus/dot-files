@@ -9,7 +9,7 @@ set encoding=utf-8
 
 " better tab completion for files
 set wildmode=longest,list,full
-
+set wildmenu
 
 " Mouse Mode
 if !has('nvim')
