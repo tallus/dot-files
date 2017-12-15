@@ -12,6 +12,7 @@ return value info. This file is Ubuntu specific but you can also do (most of) th
 
 ### Set up
 ````
+DESKTOP="false"
 sudo apt-get install git zsh python-pip python-virtualenv python -dev virtualenvwrapper ack-grep tmux
 # optionally
 sudo apt-get install toilet
@@ -56,7 +57,7 @@ cd ~/dot-files/vim/bundle
 # Install ExuberantCtags to make use of all the plugins
 
 ## install powerline font
-This is only needed for a local machine, not for machines you only ssh to
+# This is only needed for a local machine, not for machines you only ssh to
 cd .fonts
 wget https://github.com/powerline/fonts/raw/master/Inconsolata/Inconsolata%20for%20Powerline.otf
 fc-cache -vf ~/.fonts/
@@ -73,17 +74,18 @@ fc-cache -vf ~/.fonts/
 # chage the if statement to use double square brackets
 
 # useful command line things
-sudo apt-get install vim-nox aptitude ipython toilet
+sudo apt-get install vim-nox aptitude ipython
 # Set a useful editor/not Nano
 sudo  update-alternatives --config editor
 #useful  GUI things
-# terminator is best installed from the ppa
-sudo add-apt-repository ppa:gnome-terminator && sudo apt-get update
-sudo apt-get install terminator chromium-browser unity-tweak-tool gthumb inkscape gimp exaile
-# make things look pretty
-sudo add-apt-repository ppa:tiheum/equinox
-sudo add-apt-repository ppa:webupd8team/themes
-sudo apt-get update && sudo apt-get install faenza-icon-theme faience-azur-dark  faience-icon-theme
-
+if [ $DESKTOP=="true" ]; then
+  # terminator is best installed from the ppa
+  sudo add-apt-repository ppa:gnome-terminator && sudo apt-get update
+  sudo apt-get install terminator chromium-browser unity-tweak-tool gthumb inkscape gimp exaile
+  # make things look pretty
+  sudo add-apt-repository ppa:tiheum/equinox
+  sudo add-apt-repository ppa:webupd8team/themes
+  sudo apt-get update && sudo apt-get install faenza-icon-theme faience-azur-dark  faience-icon-theme
+fi
 # put menus in windows not panel System Settings -> Appearance -> Behaviour
 ````
