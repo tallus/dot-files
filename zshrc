@@ -154,6 +154,7 @@ if [ $(uname) != 'Darwin' ]; then
     alias ack="ack-grep"
 fi
 alias pack="ack --python"
+alias hack="ack --html"
 alias jack="ack --js"
 alias sack="ack --scss"
 # alias thefuck ->fuck) if it's there
