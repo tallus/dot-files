@@ -292,6 +292,7 @@ source $ZSH/oh-my-zsh.sh
 # these might need to go after on-my-zsh is called
 unsetopt SHARE_HISTORY
 
+# make home and end key work
 bindkey '\e[1~' beginning-of-line
 bindkey '\e[4~' end-of-line
 

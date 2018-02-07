@@ -26,9 +26,9 @@ set lazyredraw
 set ttyfast
 
 " for python
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+" set tabstop=4
+" set softtabstop=4
+" set shiftwidth=4
 
 filetype indent plugin on
 filetype plugin on
@@ -36,7 +36,7 @@ filetype indent on
 " set omnifunc=syntaxcomplete#Complete
 
 " set html to jinja since the latter also does the former
-"au BufWinEnter,BufRead,BufNewFile *.html set filetype=jinja
+au BufWinEnter,BufRead,BufNewFile *.html set filetype=jinja
 
 " enable github flavored markdown
 augroup markdown

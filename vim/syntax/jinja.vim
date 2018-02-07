@@ -128,6 +128,9 @@ if version >= 508 || !exists("did_jinja_syn_inits")
   delcommand HiLink
 endif
 
+setlocal expandtab
+setlocal softtabstop=2
+setlocal shiftwidth=2
 let b:current_syntax = "jinja"
 
 if main_syntax == 'jinja'
