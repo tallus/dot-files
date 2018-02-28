@@ -19,6 +19,7 @@ vim/bundle/vim-unimpaired
 vim/bundle/vim-clojure-static
 vim/bundle/vim-flavored-markdown
 vim/bundle/vim-surround
+vim/bundle/vim-fugitive
 vim/doc/tags
 vim/.netrwhist
 vim/spell/en.utf-8.add.spl
