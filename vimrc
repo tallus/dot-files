@@ -25,10 +25,10 @@ set guicursor=
 set lazyredraw
 set ttyfast
 
-" for python
-" set tabstop=4
-" set softtabstop=4
-" set shiftwidth=4
+" Set tabwidth to four by default
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 
 filetype indent plugin on
 filetype plugin on
