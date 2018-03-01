@@ -28,6 +28,7 @@ cd
 git clone https://github.com/tallus/dot-files.git
 sudo gem install lolcat
 sudo pip install pathlib thefuck
+suo pip install yapf
 
 # Backup existing dot files
 # Add symlinks
@@ -37,6 +38,7 @@ ln -s dot-files/vimrc .vimrc
 ln -s dot-files/vim ./.vim
 ln -s dot-files/tmux.conf .tmux.conf
 ln -s dot-files/ackrc .ackrc
+ln -s dot-files/style.ypaf ~/.config/yapf/style
 
 # copy over zsh theme
 cp dot-files/tallpaul.zsh-theme .oh-my-zsh/themes
@@ -53,6 +55,8 @@ echo "localplugins=(tmux)" >> .zshrc-plugins
 cd ~/dot-files/vim/bundle
 ./vim-clone.sh
 # (update these with vim-update.sh)
+# optionally add a shortcut to vimrc-local to autoformat selected text
+# noremap <F11> :Autoformat<CR>
 
 # Install ExuberantCtags to make use of all the plugins
 
