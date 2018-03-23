@@ -57,7 +57,8 @@ cd ~/dot-files/vim/bundle
 # (update these with vim-update.sh)
 # optionally add a shortcut to vimrc-local to autoformat selected text
 # noremap <F11> :Autoformat<CR>
-
+# copy style.yapf to .style.yapf in a project directory
+# to use with vim auto-format
 # Install ExuberantCtags to make use of all the plugins
 
 ## install powerline font
