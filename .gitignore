@@ -21,10 +21,15 @@ vim/bundle/vim-flavored-markdown
 vim/bundle/vim-surround
 vim/bundle/vim-fugitive
 vim/bundle/vim-autoformat
+vim/bundle/nerdtree/
+vim/bundle/vim-easytags/
+vim/bundle/vim-misc/
 vim/doc/tags
 vim/.netrwhist
 vim/spell/en.utf-8.add.spl
 vim/spell/en.utf-8.add
+
+
 
 zsh/iterm2_shell_integration.zsh
 

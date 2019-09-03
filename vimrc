@@ -147,14 +147,14 @@ let g:airline_theme='understated'
 " Rainbow Parens
 let g:bold_parentheses = 0  "off
 let g:rbpt_colorpairs = [
-    \ ['136',       'RoyalBlue3'],
-    \ ['036',    'SeaGreen3'],
+    \ ['black',       'RoyalBlue3'],
     \ ['darkgray',    'DarkOrchid3'],
     \ ['124',   'firebrick3'],
     \ ['068',    'RoyalBlue3'],
     \ ['202',     'SeaGreen3'],
     \ ['248', 'DarkOrchid3'],
     \ ['052',       'firebrick3'],
+    \ ['036',    'SeaGreen3'],
     \ ['132',        'RoyalBlue3'],
     \ ['136',       'SeaGreen3'],
     \ ['067', 'DarkOrchid3'],
@@ -245,8 +245,12 @@ map <F7> <ESC>:set cursorline!<CR>
 :noremap <F10> :SyntasticReset<CR>
 
 " Press Ctrl+F12 to toggle rainbow params
-set <F12>=[24;5~
-:noremap <F12> <ESC>:call RBParens()<CR>
+if system('uname -s') == "Darwin\n"
+    :noremap <F12> <ESC>:call RBParens()<CR>
+else
+    " set <F12>=[24;5~
+    :noremap <F12> <ESC>:call RBParens()<CR>
+endif
 
 " Press Space to turn off highlighting and clear any message already displayed.
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
