@@ -33,7 +33,12 @@ set shiftwidth=4
 filetype indent plugin on
 filetype plugin on
 filetype indent on
+
 " set omnifunc=syntaxcomplete#Complete
+" set runtimepath^=/path/to/vim-erlang-omnicomplete
+
+" turn on erlang syntax 
+set runtimepath^=~/.vim/bundle/vim-erlang-runtime/
 
 " set html to jinja since the latter also does the former
 au BufWinEnter,BufRead,BufNewFile *.html set filetype=jinja
