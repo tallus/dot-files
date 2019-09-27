@@ -264,10 +264,15 @@ CASE_SENSITIVE="true"
 # much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
+## source local
+if [  -e ~/.zshrc-local ]; then
+    source ~/.zshrc-local
+fi
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git nyan python pip virtualenvwrapper lol web-search ruby zsh-syntax-highlighting history vi-mode)
+plugins=(git python pip virtualenvwrapper lol web-search ruby zsh-syntax-highlighting history vi-mode catimg)
 # add plugins from zshrc-local
 if [ ${#localplugins} -ge 1 ]; then
     plugins=($plugins $localplugins)
@@ -314,10 +319,6 @@ insert_sudo () { zle beginning-of-line; zle -U "sudo " }
 zle -N insert-sudo insert_sudo
 bindkey "^[s" insert-sudo
 
-## source local
-if [  -e ~/.zshrc-local ]; then
-    source ~/.zshrc-local
-fi
 
 ## xterm fun!
 hello
