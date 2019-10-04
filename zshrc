@@ -272,7 +272,7 @@ fi
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git python pip virtualenvwrapper lol web-search ruby zsh-syntax-highlighting history vi-mode catimg)
+plugins=(git python pip virtualenvwrapper lol web-search ruby  history vi-mode catimg zsh-syntax-highlighting)
 # add plugins from zshrc-local
 if [ ${#localplugins} -ge 1 ]; then
     plugins=($plugins $localplugins)
@@ -318,6 +318,18 @@ bindkey '\e.' insert-last-word
 insert_sudo () { zle beginning-of-line; zle -U "sudo " }
 zle -N insert-sudo insert_sudo
 bindkey "^[s" insert-sudo
+
+# overide zsh_syntax_highlighting colours for light terms
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[arg0]='fg=blue,bold'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=blue,bold'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=blue,bold'
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=130'
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=130'
+ZSH_HIGHLIGHT_STYLES[command]='fg=blue,bold'
+ZSH_HIGHLIGHT_STYLES[hashed-command]='fg=blue,bold'
+ZSH_HIGHLIGHT_STYLES[functions]='fg=blue,bold'
+
 
 
 ## xterm fun!
