@@ -24,6 +24,7 @@ vim/bundle/vim-autoformat
 vim/bundle/nerdtree/
 vim/bundle/vim-easytags/
 vim/bundle/vim-misc/
+vim/bundle/ropevim/
 vim/bundle/vim-erlang-omnicomplete/
 vim/bundle/vim-erlang-runtime/
 vim/vim-flavored-markdown
