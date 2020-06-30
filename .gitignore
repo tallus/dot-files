@@ -28,8 +28,9 @@ vim/bundle/ropevim/
 vim/bundle/vim-erlang-omnicomplete/
 vim/bundle/vim-erlang-runtime/
 vim/bundle/vim-erlang-wordmotion/
-editorconfig-vim/
-vim-wordmotion/
+vim/bundle/editorconfig-vim/
+vim/bundle/vim-wordmotion/
+vim/bundle/vim-polyglot
 vim/vim-flavored-markdown
 vim/doc/tags
 vim/.netrwhist
