@@ -326,6 +326,30 @@ set tags=~/.mytags
 " neovim
 set guicursor=
 
+" vim-wordmotion prefix with Meta(alt)/Ctrl on Mac
+
+if system('uname -s') == "Darwin\n"
+    let g:wordmotion_mappings = {
+    \ 'w' : '<C-w>',
+    \ 'b' : '<C-b>',
+    \ 'e' : '<C-e>',
+    \ 'ge' : 'g<C-e>',
+    \ 'aw' : 'a<C-w>',
+    \ 'iw' : 'i<C-w>',
+    \ }
+else
+    let g:wordmotion_mappings = {
+    \ 'w' : '<M-w>',
+    \ 'b' : '<M-b>',
+    \ 'e' : '<M-e>',
+    \ 'ge' : 'g<M-e>',
+    \ 'aw' : 'a<M-w>',
+    \ 'iw' : 'i<M-w>',
+    \ '<C-R><C-W>' : '<C-R><M-w>'
+    \ }
+
+endif
+
 if filereadable(glob("~/.vimrc-local"))
     source ~/.vimrc-local
 endif

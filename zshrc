@@ -147,6 +147,7 @@ alias duc2='du -ch --max-depth=2'
 alias duc3='du -ch --max-depth=3'
 alias mkbash="$HOME/bin/mkscript bash"
 alias mkrb="$HOME/bin/mkscript ruby"
+alias mkjs="$HOME/bin/mkscript javascript"
 alias vi=vim
 alias view="vim -R"
 alias tmux="tmux -2"
@@ -353,4 +354,5 @@ hello
 #fi
 #PATH=$PATH:/home/pmunday/web-serpng/code/serpng/tools/bin
 #export TERM=screen-256color
+
 
