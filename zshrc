@@ -131,6 +131,17 @@ if [ -z $commands[hello] ]; then
         fi
     }
 fi
+
+# lss less if regular file otherwise ls (accepts args to ls
+ lss(){
+    if [ -f $1 ]; then
+        less $1;
+    else
+        ls  ${argv:2} $1;
+    fi
+}
+
+
 # Aliases
 
 #alias r='screen -D -R'
@@ -356,3 +367,7 @@ hello
 #export TERM=screen-256color
 
 
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/MundPa/.sdkman"
+[[ -s "/Users/MundPa/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/MundPa/.sdkman/bin/sdkman-init.sh"
