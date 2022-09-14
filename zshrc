@@ -201,7 +201,7 @@ fi
 export PIP_REQUIRE_VIRTUALENV=true
 export PIP_RESPECT_VIRTUALENV=true
 export VIRTUALENV_USE_DISTRIBUTE=true
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+export VIRTUALENVWRAPPER_PYTHON=$(which python)
 
 if [ -f /etc/bash_completion.d/virtualenvwrapper ] ; then
     function {
@@ -367,7 +367,6 @@ hello
 #fi
 #PATH=$PATH:/home/pmunday/web-serpng/code/serpng/tools/bin
 #export TERM=screen-256color
-
 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
