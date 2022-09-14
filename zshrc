@@ -191,6 +191,7 @@ if [[ -x "`whence -p dircolors`" ]]; then
       fi
 
 # virtualenvwrapper
+export VIRTUALENVWRAPPER_VIRTUALENV=$(which virtualenv)
 export WORKON_HOME=$HOME/.virtualenvs
 if [ -e $HOME/code ]; then
     export PROJECT_HOME=$HOME/code
@@ -200,7 +201,8 @@ fi
 export PIP_REQUIRE_VIRTUALENV=true
 export PIP_RESPECT_VIRTUALENV=true
 export VIRTUALENV_USE_DISTRIBUTE=true
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+
 if [ -f /etc/bash_completion.d/virtualenvwrapper ] ; then
     function {
         setopt local_options
@@ -280,7 +282,7 @@ CASE_SENSITIVE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git python pip virtualenvwrapper lol web-search ruby  history vi-mode catimg zsh-syntax-highlighting)
+plugins=(git python pip virtualenvwrapper web-search ruby  history vi-mode catimg zsh-syntax-highlighting)
 
 ## source local
 if [  -e ~/.zshrc-local ]; then
