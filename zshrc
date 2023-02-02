@@ -162,9 +162,9 @@ alias mkjs="$HOME/bin/mkscript javascript"
 alias vi=vim
 alias view="vim -R"
 alias tmux="tmux -2"
-if [ $(uname) != 'Darwin' ]; then
-    alias ack="ack-grep"
-fi
+# if [ $(uname) != 'Darwin' ]; then
+#     alias ack="ack-grep"
+# fi
 alias pack="ack --python"
 alias hack="ack --html"
 alias jack="ack --js"
@@ -190,6 +190,7 @@ if [[ -x "`whence -p dircolors`" ]]; then
           alias ls='ls -F'
       fi
 
+
 # virtualenvwrapper
 export VIRTUALENVWRAPPER_VIRTUALENV=$(which virtualenv)
 export WORKON_HOME=$HOME/.virtualenvs
@@ -201,7 +202,12 @@ fi
 export PIP_REQUIRE_VIRTUALENV=true
 export PIP_RESPECT_VIRTUALENV=true
 export VIRTUALENV_USE_DISTRIBUTE=true
-export VIRTUALENVWRAPPER_PYTHON=$(which python)
+if [[ ! -a /usr/bin/python && -a /usr/bin/python3 ]]; then
+    export VIRTUALENVWRAPPER_PYTHON=$(which python3)
+else
+    export VIRTUALENVWRAPPER_PYTHON=$(which python)
+fi
+
 
 if [ -f /etc/bash_completion.d/virtualenvwrapper ] ; then
     function {
@@ -209,6 +215,13 @@ if [ -f /etc/bash_completion.d/virtualenvwrapper ] ; then
         unsetopt equals
         export VIRTUALENVWRAPPER_SCRIPT=/etc/bash_completion.d/virtualenvwrapper
         source /etc/bash_completion.d/virtualenvwrapper
+    }
+elif [ -f /usr/share/virtualenvwrapper/virtualenvwrapper.sh ]; then
+    function {
+        setopt local_options
+        unsetopt equals
+        export VIRTUALENVWRAPPER_SCRIPT=/usr/share/virtualenvwrapper/virtualenvwrapper.sh
+        source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
     }
 elif [ -f /usr/bin/virtualenvwrapper.sh ]; then
     function {
@@ -226,6 +239,11 @@ elif [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     }
 else
     echo "No virtualenvwrapper :("
+fi
+
+# alias python3 to python
+if [[ ! -a /usr/bin/python && -a /usr/bin/python3 ]]; then
+    alias python=/usr/bin/python3
 fi
 
 # alias mkvirtualenv-real='mkvirtualenv'
@@ -370,5 +388,5 @@ hello
 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/MundPa/.sdkman"
-[[ -s "/Users/MundPa/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/MundPa/.sdkman/bin/sdkman-init.sh"
+# export SDKMAN_DIR="/Users/MundPa/.sdkman"
+# [[ -s "/Users/MundPa/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/MundPa/.sdkman/bin/sdkman-init.sh"
