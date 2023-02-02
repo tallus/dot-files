@@ -26,7 +26,8 @@ curl -L http://install.ohmyz.sh | sh
 cd ~/.oh-my-zsh/custom/plugins
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 cd
-git clone https://github.com/tallus/dot-files.git
+# git clone https://github.com/tallus/dot-files.git
+git clone git@github.com:tallus/dot-files.git
 
 # new
 sudo apt install thefuck yapf3 lolcat
@@ -67,7 +68,7 @@ cd ~/dot-files/vim/bundle
 # copy style.yapf to .style.yapf in a project directory
 # to use with vim auto-format
 # Install ExuberantCtags to make use of all the plugins
-
+sudo apt-install exuberant-ctags
 ## install powerline font
 # This is only needed for a local machine, not for machines you only ssh to
 cd .fonts
