@@ -27,6 +27,12 @@ cd ~/.oh-my-zsh/custom/plugins
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 cd
 git clone https://github.com/tallus/dot-files.git
+
+# new
+sudo apt install thefuck yapf3 lolcat
+sudo pip install pathlib
+
+# old:
 sudo gem install lolcat
 sudo pip install pathlib thefuck
 suo pip install yapf
@@ -85,13 +91,13 @@ sudo apt-get install vim-nox aptitude ipython
 sudo  update-alternatives --config editor
 #useful  GUI things
 if [ $DESKTOP=="true" ]; then
-  # terminator is best installed from the ppa
-  sudo add-apt-repository ppa:gnome-terminator && sudo apt-get update
-  sudo apt-get install terminator chromium-browser unity-tweak-tool gthumb inkscape gimp exaile
-  # make things look pretty
+  # terminator is best installed from the ppa - not needed anymore?
+  # sudo add-apt-repository ppa:gnome-terminator && sudo apt-get update
+  # sudo apt-get install terminator chromium-browser unity-tweak-tool gthumb inkscape gimp exaile
+  sudo apt-get install terminator chromium-browser gnome-tweak-tool gthumb inkscape gimp exaile
+  # make things look pretty - this is old
   sudo add-apt-repository ppa:tiheum/equinox
   sudo add-apt-repository ppa:webupd8team/themes
   sudo apt-get update && sudo apt-get install faenza-icon-theme faience-azur-dark  faience-icon-theme
 fi
-# put menus in windows not panel System Settings -> Appearance -> Behaviour
-````
+# put menus in windows not panel System Settings -> Appearance -> Behaviour (not any more)
