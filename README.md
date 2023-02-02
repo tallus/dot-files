@@ -86,9 +86,13 @@ fc-cache -vf ~/.fonts/
 # chage the if statement to use double square brackets
 
 # useful command line things
-sudo apt-get install vim-nox aptitude ipython
+# sudo apt-get install vim-nox aptitude ipython (aptitude was already installed)
+sudo apt install vim-nox python3-ipython ddgr direnv ondir px vim-syntastic
 # Set a useful editor/not Nano
 sudo  update-alternatives --config editor
+# get Templates
+git clone git@github.com:tallus/templates.git
+
 #useful  GUI things
 if [ $DESKTOP=="true" ]; then
   # terminator is best installed from the ppa - not needed anymore?
