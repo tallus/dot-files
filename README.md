@@ -13,9 +13,10 @@ return value info. This file is Ubuntu specific but you can also do (most of) th
 ### Set up
 ````
 DESKTOP="false"
-sudo apt-get install git zsh python-pip python-virtualenv python -dev virtualenvwrapper ack-grep tmux
+# sudo apt-get install git zsh python-pip python-virtualenv python -dev virtualenvwrapper ack-grep tmux
+sudo apt install git curl zsh python3 virtualenvwrapper ack-grep tmux
 # optionally
-sudo apt-get install toilet
+sudo apt install toilet
 # if you install this it doesn't install  a very good font selection
 # and you probably want to install some more (at least fraktur and slant)
 # if you are me they are on gatheringstorms
