@@ -40,13 +40,14 @@ suo pip install yapf
 
 # Backup existing dot files
 # Add symlinks
-ln -s dot-files/zshrc .zshrc
-ln -s dot-files/zsh .zsh
-ln -s dot-files/vimrc .vimrc
-ln -s dot-files/vim ./.vim
-ln -s dot-files/tmux.conf .tmux.conf
-ln -s dot-files/ackrc .ackrc
-ln -s dot-files/pylintrc ./.pylintrc
+ln -s dot-files/zshrc ~/.zshrc
+ln -s dot-files/zsh ~/.zsh
+ln -s dot-files/vimrc ~/.vimrc
+ln -s dot-files/vim ~/.vim
+ln -s dot-files/tmux.conf ~/.tmux.conf
+ln -s dot-files/ackrc ~/.ackrc
+ln -s dot-files/pylintrc ~/.pylintrc
+ln -s dotfiles/flake8 ~/.config/flake8
 ln -s dot-files/style.ypaf ~/.config/yapf/style
 
 # copy over zsh theme
