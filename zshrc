@@ -192,6 +192,20 @@ if [[ -x "`whence -p dircolors`" ]]; then
 
 
 # virtualenvwrapper
+# use python3 by default if it exists
+if which python3 &> /dev/null && which python &> /dev/null; then
+     export VIRTUALENVWRAPPER_PYTHON=$(which python3)
+     LOCAL_PIP=$(which pip3)
+
+ else
+     export VIRTUALENVWRAPPER_PYTHON=$(which python)
+     LOCAL_PIP=$(which pip)
+fi
+# ensure virtualenvwrapper is installed for this version of python
+if ! $LOCAL_PIP show virtualenvwrapper &>/dev/null; then
+    $LOCAL_PIP install --user virtualenvwrapper
+fi
+
 export VIRTUALENVWRAPPER_VIRTUALENV=$(which virtualenv)
 export WORKON_HOME=$HOME/.virtualenvs
 if [ -e $HOME/code ]; then
@@ -202,12 +216,6 @@ fi
 export PIP_REQUIRE_VIRTUALENV=true
 export PIP_RESPECT_VIRTUALENV=true
 export VIRTUALENV_USE_DISTRIBUTE=true
-if [[ ! -a /usr/bin/python && -a /usr/bin/python3 ]]; then
-    export VIRTUALENVWRAPPER_PYTHON=$(which python3)
-else
-    export VIRTUALENVWRAPPER_PYTHON=$(which python)
-fi
-
 
 if [ -f /etc/bash_completion.d/virtualenvwrapper ] ; then
     function {
@@ -215,6 +223,20 @@ if [ -f /etc/bash_completion.d/virtualenvwrapper ] ; then
         unsetopt equals
         export VIRTUALENVWRAPPER_SCRIPT=/etc/bash_completion.d/virtualenvwrapper
         source /etc/bash_completion.d/virtualenvwrapper
+    }
+elif [ -f /opt/homebrew/bin/virtualenvwrapper.sh ]; then
+    function {
+        setopt local_options
+        unsetopt equals
+        export VIRTUALENVWRAPPER_SCRIPT=/opt/homebrew/bin/virtualenvwrapper.sh
+        source /opt/homebrew/bin/virtualenvwrapper.sh
+    }
+elif [ -f /usr/bin/virtualenvwrapper.sh ]; then
+    function {
+        setopt local_options
+        unsetopt equals
+        export VIRTUALENVWRAPPER_SCRIPT=/usr/bin/virtualenvwrapper.sh
+        source /usr/bin/virtualenvwrapper.sh
     }
 elif [ -f /usr/share/virtualenvwrapper/virtualenvwrapper.sh ]; then
     function {
@@ -242,9 +264,9 @@ else
 fi
 
 # alias python3 to python
-if [[ ! -a /usr/bin/python && -a /usr/bin/python3 ]]; then
-    alias python=/usr/bin/python3
-fi
+# if [[ ! -a /usr/bin/python && -a /usr/bin/python3 ]]; then
+#     alias python=/usr/bin/python3
+# fi
 
 # alias mkvirtualenv-real='mkvirtualenv'
 # alias mkvirtualenv='mkvirt'
@@ -390,3 +412,5 @@ hello
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 # export SDKMAN_DIR="/Users/MundPa/.sdkman"
 # [[ -s "/Users/MundPa/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/MundPa/.sdkman/bin/sdkman-init.sh"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
