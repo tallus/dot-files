@@ -13,10 +13,14 @@ return value info. This file is Ubuntu specific but you can also do (most of) th
 ### Set up
 ````
 DESKTOP="false"
-# sudo apt-get install git zsh python-pip python-virtualenv python -dev virtualenvwrapper ack-grep tmux
-sudo apt install git curl zsh python3 virtualenvwrapper ack-grep tmux plocate
+# sudo apt-get install git zsh python-pip python-virtualenv python -dev virtualenvwrapper tmux ripgrep
+sudo apt install git curl zsh python3 virtualenvwrapper ripgrep tmux plocate
 # optionally
-sudo apt install toilet silversurfer-ag
+sudo apt install toilet
+
+# ack/silversurfer-ag, replaced by ripgrep
+# https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md
+
 # if you install this it doesn't install  a very good font selection
 # and you probably want to install some more (at least fraktur and slant)
 # if you are me they are on gatheringstorms
@@ -45,10 +49,14 @@ ln -s ~/dot-files/zsh ~/.zsh
 ln -s ~/dot-files/vimrc ~/.vimrc
 ln -s ~/dot-files/vim ~/.vim
 ln -s ~/dot-files/tmux.conf ~/.tmux.conf
-ln -s ~/dot-files/ackrc ~/.ackrc
+# ln -s ~/dot-files/ackrc ~/.ackrc
+ln -s ~/dot-files/ripgreprc ~/.ripgreprc
 ln -s ~/dot-files/pylintrc ~/.pylintrc
 ln -s ~/dotfiles/flake8 ~/.config/flake8
 ln -s ~/dot-files/style.ypaf ~/.config/yapf/style
+
+# alias real-ack=ack only if installed
+alias ack=rg
 
 # copy over zsh theme
 cp dot-files/tallpaul.zsh-theme .oh-my-zsh/themes
