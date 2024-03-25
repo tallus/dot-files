@@ -16,6 +16,12 @@ setopt autopushd pushdignoredups # used by cd-
 
 PATH="$HOME/bin:$PATH"
 
+# Use to detect OS X/mac
+is_darwin(){
+    [[ $OSTYPE == darwin* ]] && return 0
+    return 1
+}
+
 # Autoload screen if we aren't in it.  (Thanks Fjord!)
 # Note we have to account for terminator if we want
 # to allow for right click screen split
@@ -202,8 +208,9 @@ if which python3 &> /dev/null && which python &> /dev/null; then
      LOCAL_PIP=$(which pip)
 fi
 # ensure virtualenvwrapper is installed for this version of python
-if ! $LOCAL_PIP show virtualenvwrapper &>/dev/null; then
-    $LOCAL_PIP install --user virtualenvwrapper
+# probably a bad idea see PEP 668, hence OS overide
+if ! is_darwin && ! $($LOCAL_PIP show virtualenvwrapper &>/dev/null) ; then
+    echo "$LOCAL_PIP install --user virtualenvwrapper"
 fi
 
 export VIRTUALENVWRAPPER_VIRTUALENV=$(which virtualenv)
