@@ -398,6 +398,10 @@ ZSH_HIGHLIGHT_STYLES[functions]='fg=blue,bold'
 ## xterm fun!
 hello
 
+# Use this to output messages after everything else
+if [  -e ~/.zshrc-local-final ]; then
+    source ~/.zshrc-local-final
+fi
 
 # End of lines configured by zsh-newuser-install
 
