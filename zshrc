@@ -395,12 +395,15 @@ ZSH_HIGHLIGHT_STYLES[functions]='fg=blue,bold'
 
 
 
-## xterm fun!
-hello
-
-# Use this to output messages after everything else
-if [  -e ~/.zshrc-local-final ]; then
-    source ~/.zshrc-local-final
+# Don't run this if shell interaction is required
+# (by intellij)
+if [ -z "$INTELLIJ_ENVIRONMENT_READER" ]; then
+    ## xterm fun!
+    hello
+    # Use this to output messages after everything else
+    if [  -e ~/.zshrc-local-final ]; then
+        source ~/.zshrc-local-final
+    fi
 fi
 
 # End of lines configured by zsh-newuser-install
