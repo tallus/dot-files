@@ -325,16 +325,27 @@ set tags=~/.mytags
 " neovim
 set guicursor=
 
-" vim-wordmotion prefix with Meta(alt)/Ctrl on Mac
-
+" vim-wordmotion prefix with Meta(alt)
 if system('uname -s') == "Darwin\n"
+    " use Ctrl instead of meta (dont asa this messes with windows switching
+    " let g:wordmotion_mappings = {
+    " \ 'w' : '<C-w>',
+    " \ 'b' : '<C-b>',
+    " \ 'e' : '<C-e>',
+    " \ 'ge' : 'g<C-e>',
+    " \ 'aw' : 'a<C-w>',
+    " \ 'iw' : 'i<C-w>',
+    " \ }
+    " in Iterm2 select Report modifiers using CSI u and
+    " set Left Option key to be normal not esc+ in profile
+    " These keys represent Option+ char and can be typed in insert mode
     let g:wordmotion_mappings = {
-    \ 'w' : '<C-w>',
-    \ 'b' : '<C-b>',
-    \ 'e' : '<C-e>',
-    \ 'ge' : 'g<C-e>',
-    \ 'aw' : 'a<C-w>',
-    \ 'iw' : 'i<C-w>',
+    \ 'w' : '∑',
+    \ 'b' : '∫',
+    \ 'e' : '´',
+    \ 'ge' : 'g´',
+    \ 'aw' : 'a∑',
+    \ 'iw' : 'i∑',
     \ }
 else
     let g:wordmotion_mappings = {
@@ -348,6 +359,16 @@ else
     \ }
 
 endif
+" vim-wordmotion prefix with Meta(alt)/Ctrl on Mac
+" let g:wordmotion_mappings = {
+" \ 'w' : '<M-w>',
+" \ 'b' : '<M-b>',
+" \ 'e' : '<M-e>',
+" \ 'ge' : 'g<M-e>',
+" \ 'aw' : 'a<M-w>',
+" \ 'iw' : 'i<M-w>',
+" \ '<C-R><C-W>' : '<C-R><M-w>'
+" \ }
 
 if filereadable(glob("~/.vimrc-local"))
     source ~/.vimrc-local

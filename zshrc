@@ -393,7 +393,10 @@ ZSH_HIGHLIGHT_STYLES[command]='fg=blue,bold'
 ZSH_HIGHLIGHT_STYLES[hashed-command]='fg=blue,bold'
 ZSH_HIGHLIGHT_STYLES[functions]='fg=blue,bold'
 
-
+# run here to ensure it doesn't get overwritten
+if [  -e ~/.zshrc-local-aliases ]; then
+    source ~/.zshrc-local-aliases
+fi
 
 # Don't run this if shell interaction is required
 # (by intellij)
